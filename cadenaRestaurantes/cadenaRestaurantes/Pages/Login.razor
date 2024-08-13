@@ -1,0 +1,69 @@
+﻿@page "/"
+@layout LoginLayout
+
+
+@using cadenaRestaurantes.AccessControllers
+@using UtilitiesRestaurante
+@using Microsoft.AspNetCore.Components.Authorization
+@using CurrieTechnologies.Razor.SweetAlert2
+
+@inject HttpClient Http
+@inject SweetAlertService notification;
+@inject AuthenticationStateProvider autenticacionProvider
+@inject NavigationManager NavigationManager
+
+<div class="row mt-5">
+
+    <div class="col-lg-4 offset-lg-4 border">
+
+        <div class="mb-3 text-center">
+            <h3>LOGIN</h3>
+        </div>
+
+        <div class="mb-3">
+            <label>Usuario</label>
+            <input @bind="login.Correo" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Contraseña</label>
+            <input @bind="login.Clave" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <button @onclick="IniciarSesion" class="btn btn-primary">Login</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+@code {
+    public string Url = "/api/Access";
+    public  LoginCredentials login = new LoginCredentials();
+
+    private async Task IniciarSesion()
+    {
+        var loginResponse = await Http.PostAsJsonAsync<LoginCredentials>(Url, login);
+        if (loginResponse.IsSuccessStatusCode)
+        {
+            var sesionUsuario = await loginResponse.Content.ReadFromJsonAsync<UserRequest>();
+            var autenticacionExt = (AuthenticationFilter)autenticacionProvider;
+            await autenticacionExt.UpdateAuthenticationState(sesionUsuario);
+
+            NavigationManager.NavigateTo("/Home");
+        }
+        else
+        {
+
+    
+            await notification.FireAsync(new SweetAlertOptions
+            {
+                Title = "Inicio de Sesión Denegado",
+                Text = "Usario o contraseña incorrecto, cuenta no encontrada o inactiva",
+                Icon = SweetAlertIcon.Error,
+            });
+        }
+    }
+}

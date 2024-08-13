@@ -1,0 +1,253 @@
+﻿@page "/Employees"
+@page "/Administrators"
+
+@using System.Net.Http
+@using System.Net.Http.Json 
+@using System.Security.Claims
+@using UtilitiesRestaurante
+@using CurrieTechnologies.Razor.SweetAlert2
+@using cadenaRestaurantes.AccessControllers
+@using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Components.Authorization;
+@attribute [Authorize]
+
+@inject AuthenticationStateProvider autenticacionProvider
+@inject SweetAlertService validation;
+@inject HttpClient Http 
+@inject NavigationManager NavigationManager
+
+<h1 class="text-center ">@titulo</h1>
+
+
+<div class="row justify-content-between mb-5" style="height: 30px;">
+	<div class="col-4">
+			
+				
+		<button type="button" class="btn bg-secondary rounded-pill d-flex align-items-center">
+			<input type="text" class="form-control form-control-sm  bg-primary-subtle me-3" placeholder="Buscar" @bind-value="search_txt" @bind-value:event="oninput" @onkeyup="Search" />
+			<span class="oi oi-magnifying-glass" @onclick="Search"></span>
+		</button>	
+	</div>
+	<div class="col-3 text-end">
+		<a href="/Employees/Form"><button class="btn btn-info">@btn_txt</button></a>
+	</div>	
+					
+</div>
+
+<div class="row justify-content-center">
+	<form>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Cedula</th>
+					<th>Nombre Completo</th>
+					<th>Telefono</th>
+					<th>Correo</th>
+					<th>@col_name</th>
+					<th>Fin Contrato</th>
+					<th>Inicio Jornada</th>
+					<AuthorizeView Roles="Superadmin">
+						
+						<th>Equipo</th>
+						
+					</AuthorizeView>
+					<th>Estado</th>
+					<th></th>
+				</tr>
+
+			</thead>
+			<tbody>
+				@if (multipleOutputs != null && multipleOutputs.QueryData != null)
+				{
+					@foreach (var Employee in multipleOutputs.QueryData)
+					{
+						<tr>
+							<td>@Employee.Cedula</td>
+							<td>@Employee.Nombre</td>
+							<td>@Employee.Telefono</td>
+							<td>@Employee.Correo</td>
+							<td>
+								@if (cargo.Equals("Superadmin", StringComparison.OrdinalIgnoreCase))
+								{
+									@Employee.NitRestaurante
+
+								}else
+								{
+									@Employee.Cargo
+								}
+							</td>
+							<td>@Employee.FinContrato.ToString("dd/MM/yyyy")</td>	
+							
+							<td>@Employee.InicioJornada.ToString(@"hh\:mm\:ss")</td>
+							
+							@if (Employee.Estado.Equals("Inactivo", StringComparison.OrdinalIgnoreCase)){
+								background="bg-secondary";
+								isChecked = false;
+								<AuthorizeView Roles="Superadmin">
+									
+									<td>
+									
+										<button class="btn btn-sm" disabled>
+											<span class="oi oi-eye fs-4"></span>
+										</button>
+
+									</td>
+									
+								</AuthorizeView>
+								<td>
+									<div class="form-check form-switch">
+										<input class="form-check-input @background" type="checkbox"
+												checked="@isChecked"
+												@onchange="@(e => save(Employee.Cedula, (bool)e.Value))" />
+									</div>
+								</td>
+								<td>
+									<button type="button" class="btn btn-danger btn-sm" @onclick="(() => Eliminar(Employee.Cedula, Employee.Nombre))">
+										<span class="oi oi-trash"></span>
+									</button>
+								</td>
+							}
+							else
+							{
+								background = "bg-success";
+								isChecked = true;
+								<AuthorizeView Roles="Superadmin">
+									
+									<td>
+
+										<button type="button" class="btn btn-sm" @onclick="(() => ShowModal(Employee.Nombre,Employee.NitRestaurante))">
+											<span class="oi oi-eye fs-4"></span>
+										</button>
+
+									</td>
+									
+								</AuthorizeView>
+								<td>
+									<div class="form-check form-switch">
+										<input class="form-check-input @background" type="checkbox"
+												checked="@isChecked"
+												@onchange="@(e => save(Employee.Cedula, (bool)e.Value))" />
+									</div>
+								</td>
+								<td>
+									<a href="/Employees/form/@Employee.Cedula">
+										<button class="btn btn-info btn-sm">
+											<span class="oi oi-pencil"></span>
+										</button>
+									</a>
+								</td>
+										
+							}
+								
+						</tr>
+					}
+
+				}
+			</tbody>
+		</table>
+	</form>
+
+</div>
+
+
+
+@code {
+
+	[Parameter]
+	public string background { get; set; } 
+	public bool isChecked { get; set; }
+
+	[CascadingParameter]
+	IModalService Modal { get; set; } = default!;
+
+
+	public string Url = "/api/Empleados";
+	string search_txt;
+	string titulo = "Empleados";
+	string btn_txt = "Agregar Empleado";
+	string col_name = "Cargo";
+	string cargo = string.Empty;
+	string nit = string.Empty;
+
+
+	public RequestResponse<List<EmployeeRequest>> multipleOutputs = new RequestResponse<List<EmployeeRequest>>();
+	public RequestResponse<EmployeeRequest> oneOutput = new RequestResponse<EmployeeRequest>();
+
+	protected override async Task OnInitializedAsync()
+	{
+		var autenticacionExt = (AuthenticationFilter)autenticacionProvider;
+		var user = await autenticacionExt.GetAuthenticationStateAsync();
+		var loggedUser = user.User;
+		cargo = loggedUser.FindFirst(ClaimTypes.Role)?.Value;
+		nit = loggedUser.FindFirst(ClaimTypes.SerialNumber)?.Value;
+
+		if (cargo == "Superadmin"){
+			titulo = "Administradores";
+			btn_txt = "Agregar Administrador";
+			col_name = "NIT";
+		}
+
+
+		multipleOutputs = await Http.GetFromJsonAsync<RequestResponse<List<EmployeeRequest>>>($"{Url}/{cargo}?input={nit}");
+
+	}
+
+	private async Task save(string cedula, bool isActive)
+	{
+
+		var newStatus = isActive ? "Activo" : "Inactivo";
+		var response = await Http.PutAsJsonAsync($"{Url}/{cedula}?Status={newStatus}", newStatus);
+		var PlainOutput = await response.Content.ReadFromJsonAsync<RequestResponse<object>>();
+
+
+		NavigationManager.NavigateTo("/Employees", forceLoad: true);
+	}
+
+	private async Task Eliminar(string cedula, string name)
+	{
+
+		var resultado = await validation.FireAsync(new SweetAlertOptions
+		{
+			Title = "Eliminar Empleado",
+			Text = $"El Empleado  {name} ya se encuentra INACTIVO, ¿Esta seguro que desea eliminar este empleado?",
+			Icon = SweetAlertIcon.Question,
+			ShowCancelButton = true
+		});
+
+		if (resultado.IsConfirmed)
+		{
+			var deleteRequest = await Http.DeleteAsync($"{Url}/{cedula}?Rol={cargo}");
+
+		}
+
+		NavigationManager.NavigateTo("/Employees", forceLoad: true);
+
+	}
+
+	private async Task Search()
+	{
+
+		if (!string.IsNullOrEmpty(search_txt))
+		{
+			multipleOutputs = await Http.GetFromJsonAsync<RequestResponse<List<EmployeeRequest>>>($"{Url}/{cargo}?input={search_txt}");
+		}
+		else
+		{
+			
+			multipleOutputs = await Http.GetFromJsonAsync<RequestResponse<List<EmployeeRequest>>>($"{Url}/{cargo}?input={nit}");
+		}
+
+	}
+
+	private async Task ShowModal(string name, long? nitValue)
+	{
+		IModalReference modalReference;
+		string Nit = nitValue.ToString();
+
+		modalReference = Modal.Show<VentanaEmergente>($"Equipo - Administrador :{name}", new ModalParameters().Add("Nit", Nit));
+		
+	}
+
+}
+
+
