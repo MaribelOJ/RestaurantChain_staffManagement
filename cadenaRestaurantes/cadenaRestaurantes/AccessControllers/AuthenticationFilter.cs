@@ -24,8 +24,9 @@ namespace cadenaRestaurantes.AccessControllers
 
 				var claims = new List<Claim>
 				{
-					new Claim(ClaimTypes.NameIdentifier, loggedUser.Id),
+					new Claim(ClaimTypes.NameIdentifier, loggedUser.Cedula),
 					new Claim(ClaimTypes.Name, loggedUser.Nombre),
+					new Claim(ClaimTypes.HomePhone, loggedUser.Telefono),
 					new Claim(ClaimTypes.Email, loggedUser.Correo),
 					new Claim(ClaimTypes.Role, loggedUser.Cargo)
 				};
@@ -58,8 +59,9 @@ namespace cadenaRestaurantes.AccessControllers
 
 			var claims = new List<Claim>
 {
-				new Claim(ClaimTypes.NameIdentifier, loggedUser.Id),
+				new Claim(ClaimTypes.NameIdentifier,loggedUser.Cedula),
 				new Claim(ClaimTypes.Name, loggedUser.Nombre),
+				new Claim(ClaimTypes.HomePhone, loggedUser.Telefono),
 				new Claim(ClaimTypes.Email, loggedUser.Correo),
 				new Claim(ClaimTypes.Role, loggedUser.Cargo)
 			};

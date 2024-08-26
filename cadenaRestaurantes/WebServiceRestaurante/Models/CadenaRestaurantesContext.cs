@@ -15,9 +15,9 @@ public partial class CadenaRestaurantesContext : DbContext
     {
     }
 
-    public virtual DbSet<RecruitmentDetail> RecruitmentDetails { get; set; }
+    public virtual DbSet<EmploymentDetail> EmploymentDetails { get; set; }
 
-    public virtual DbSet<RecruitmentLog> RecruitmentLogs { get; set; }
+    public virtual DbSet<EmploymentLog> EmploymentLogs { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
@@ -29,11 +29,11 @@ public partial class CadenaRestaurantesContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<RecruitmentDetail>(entity =>
+        modelBuilder.Entity<EmploymentDetail>(entity =>
         {
             entity.HasKey(e => e.IdDetalleContratacion).HasName("PK_detalle_contratacion");
 
-            entity.ToTable("recruitment_details", tb => tb.HasTrigger("addRecruitmentLog"));
+            entity.ToTable("employment_details");
 
             entity.Property(e => e.IdDetalleContratacion).HasColumnName("id_detalle_contratacion");
             entity.Property(e => e.Cedula)
@@ -49,23 +49,27 @@ public partial class CadenaRestaurantesContext : DbContext
             entity.Property(e => e.InicioJornada).HasColumnName("inicio_jornada");
             entity.Property(e => e.NitRestaurante).HasColumnName("nit_restaurante");
 
-            entity.HasOne(d => d.CedulaNavigation).WithMany(p => p.RecruitmentDetails)
+            entity.HasOne(d => d.CedulaNavigation).WithMany(p => p.EmploymentDetails)
                 .HasForeignKey(d => d.Cedula)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_recruitment_details_workers");
+                .HasConstraintName("FK_employment_details_workers");
         });
 
-        modelBuilder.Entity<RecruitmentLog>(entity =>
+        modelBuilder.Entity<EmploymentLog>(entity =>
         {
-            entity.HasKey(e => e.IdRegistro);
+            entity.HasKey(e => e.IdRegistro).HasName("PK_recruitment_log");
 
-            entity.ToTable("recruitment_log");
+            entity.ToTable("employment_log");
 
             entity.Property(e => e.IdRegistro).HasColumnName("id_registro");
-            entity.Property(e => e.Cedula)
+            entity.Property(e => e.EmpleadoModificado)
                 .HasMaxLength(10)
                 .IsUnicode(false)
-                .HasColumnName("cedula");
+                .HasColumnName("empleado_modificado");
+            entity.Property(e => e.Estado)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("estado");
             entity.Property(e => e.FechaCreacion)
                 .HasColumnType("datetime")
                 .HasColumnName("fecha_creacion");
@@ -95,7 +99,7 @@ public partial class CadenaRestaurantesContext : DbContext
             entity.HasOne(d => d.CedulaNavigation).WithOne(p => p.User)
                 .HasForeignKey<User>(d => d.Cedula)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_users_workers");
+                .HasConstraintName("FK_users_workers1");
         });
 
         modelBuilder.Entity<Worker>(entity =>

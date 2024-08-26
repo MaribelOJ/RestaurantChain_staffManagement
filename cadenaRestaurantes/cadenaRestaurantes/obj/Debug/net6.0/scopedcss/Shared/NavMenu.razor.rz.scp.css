@@ -9,13 +9,21 @@
 
 .navbar-brand[b-3xtsvvkdzo] {
     font-size: 1.1rem;
+    font-style:normal;
 }
 
-.oi[b-3xtsvvkdzo] {
+.bi[b-3xtsvvkdzo] {
     width: 2rem;
     font-size: 1.1rem;
     vertical-align: text-top;
     top: -2px;
+    
+}
+
+.half[b-3xtsvvkdzo] {
+    color: #ffeba7;
+   /* font-size: 18px;*/
+    font-style: italic;
 }
 
 .nav-item[b-3xtsvvkdzo] {

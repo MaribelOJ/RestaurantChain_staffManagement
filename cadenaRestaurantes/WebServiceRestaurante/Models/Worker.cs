@@ -17,7 +17,7 @@ public partial class Worker
 
     public string Estado { get; set; } = null!;
 
-    public virtual ICollection<RecruitmentDetail> RecruitmentDetails { get; set; } = new List<RecruitmentDetail>();
+    public virtual ICollection<EmploymentDetail> EmploymentDetails { get; set; } = new List<EmploymentDetail>();
 
     public virtual User? User { get; set; }
 }

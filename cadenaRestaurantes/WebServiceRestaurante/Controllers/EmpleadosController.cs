@@ -70,10 +70,11 @@ namespace WebServiceRestaurante.Controllers
 		
 
 		[HttpGet("{Rol}")]
-		public IActionResult GetMany(string Rol, [FromQuery] string? input)
+		public IActionResult GetMany(string Rol, [FromQuery] string? input, [FromQuery] string? Nit)
 		{
-			Console.WriteLine($"Afuera del if: {input}");
+
 			RequestResponse<List<EmployeeRequest>> output = new RequestResponse<List<EmployeeRequest>>();
+
 
 			try
 			{
@@ -85,9 +86,16 @@ namespace WebServiceRestaurante.Controllers
 
 					if (Rol == "Administrador")
 					{
+						if (Nit == null)
+						{
+							Nit = input;
+							input = string.Empty;
+						}
+
+
 						lst = (from d in db.Workers
-                               join u in db.RecruitmentDetails on d.Cedula equals u.Cedula
-                               where (d.Nombre.Contains(input) || EF.Functions.Like(d.Cedula, $"{input}%" ) || u.NitRestaurante == long.Parse(input)) && !new[] { "Superadmin", "Administrador" }.Contains(d.Cargo)
+                               join u in db.EmploymentDetails on d.Cedula equals u.Cedula
+                               where (d.Nombre.Contains(input) || EF.Functions.Like(d.Cedula, $"{input}%" )) && u.NitRestaurante == long.Parse(Nit) && !new[] { "Superadmin", "Administrador" }.Contains(d.Cargo)
                                select new EmployeeRequest
 							   {
 								   Cedula = d.Cedula,
@@ -109,7 +117,7 @@ namespace WebServiceRestaurante.Controllers
 						bool isNitValid = long.TryParse(input, out nitValue);
 
 						lst = (from d in db.Workers
-                               join u in db.RecruitmentDetails on d.Cedula equals u.Cedula
+                               join u in db.EmploymentDetails on d.Cedula equals u.Cedula
                                where (d.Nombre.Contains(input) || EF.Functions.Like(d.Cedula, $"{input}%") || (isNitValid && u.NitRestaurante == nitValue)) && d.Cargo == "Administrador"
                                select new EmployeeRequest
 							   { 
@@ -126,9 +134,6 @@ namespace WebServiceRestaurante.Controllers
 								   
 
 								}).ToList();
-						_logger.LogInformation(lst[0].Nombre);
-
-
 					}
 
 					output.Success = 1;
@@ -153,7 +158,7 @@ namespace WebServiceRestaurante.Controllers
 				{
 
 					var employee = (from d in db.Workers
-                                    join u in db.RecruitmentDetails on d.Cedula equals u.Cedula
+                                    join u in db.EmploymentDetails on d.Cedula equals u.Cedula
                                     where d.Cedula == Cc
                                     orderby u.FechaCreacion descending
                                     select new EmployeeRequest
@@ -185,7 +190,7 @@ namespace WebServiceRestaurante.Controllers
 		{
 			RequestResponse<object> output = new RequestResponse<object>();
 
-
+			_logger.LogInformation("en API");
 			if (Rol == "Administrador")
 			{
 				if(model.Cargo == "Administrador" || model.Cargo == "Superadmin")
@@ -213,14 +218,14 @@ namespace WebServiceRestaurante.Controllers
 					db.Workers.Add(employee);
 					db.SaveChanges();
 
-                    RecruitmentDetail detail = new RecruitmentDetail();
+                    EmploymentDetail detail = new EmploymentDetail();
 					detail.Cedula = model.Cedula;
                     detail.FinContrato = model.FinContrato;
                     detail.InicioJornada = model.InicioJornada;
                     detail.NitRestaurante = model.NitRestaurante;
 					detail.FechaCreacion = DateTime.Now;
 
-                    db.RecruitmentDetails.Add(detail);
+                    db.EmploymentDetails.Add(detail);
                     db.SaveChanges();
 
                     
@@ -249,12 +254,9 @@ namespace WebServiceRestaurante.Controllers
 
 		[HttpPut]
 
-		public IActionResult Edit(EmployeeRequest model)
+		public IActionResult Edit( EmployeeRequest model)
 		{
-
 			RequestResponse<object> output = new RequestResponse<object>();
-			string nit = model.NitRestaurante.ToString();
-			string fecha = model.FinContrato.ToString();	
 	
 
 			try
@@ -271,27 +273,32 @@ namespace WebServiceRestaurante.Controllers
                     db.Entry(employee).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     db.SaveChanges();
 
-					RecruitmentDetail record = (from d in db.RecruitmentDetails
-												where d.Cedula == model.Cedula
-												select d).FirstOrDefault();
-					_logger.LogInformation((record.InicioJornada).ToString());
-					_logger.LogInformation(model.InicioJornada.ToString());
+					EmploymentDetail record = db.EmploymentDetails.Where(d => d.Cedula == model.Cedula).FirstOrDefault();
 
-					if(record != null && (record.FinContrato != model.FinContrato || record.InicioJornada != model.InicioJornada || record.NitRestaurante != model.NitRestaurante))
+
+
+					if (record != null && (record.FinContrato != model.FinContrato || record.InicioJornada != model.InicioJornada || record.NitRestaurante != model.NitRestaurante))
 					{
-                        RecruitmentDetail detail = db.RecruitmentDetails.Where(d=>d.Cedula == model.Cedula).FirstOrDefault();
-                        detail.Cedula = model.Cedula;
-                        detail.FinContrato = model.FinContrato;
-                        detail.InicioJornada = model.InicioJornada;
-                        detail.NitRestaurante = model.NitRestaurante;
-                        detail.FechaCreacion = DateTime.Now;
+						db.Database.ExecuteSqlRaw("EXEC addEmploymentLog @empleado_modificado, @fin_contrato, @inicio_jornada, @nit_restaurante, @estado, @fecha_creacion",
+							new SqlParameter("@empleado_modificado", model.Cedula),
+							new SqlParameter("@fin_contrato", record.FinContrato),
+							new SqlParameter("@inicio_jornada", record.InicioJornada),
+							new SqlParameter("@nit_restaurante", record.NitRestaurante),
+							new SqlParameter("@estado", employee.Estado),
+							new SqlParameter("@fecha_creacion", DateTime.Now));
 
-                        db.Entry(detail).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                        record.Cedula = model.Cedula;
+                        record.FinContrato = model.FinContrato;
+                        record.InicioJornada = model.InicioJornada;
+                        record.NitRestaurante = model.NitRestaurante;
+                        record.FechaCreacion = DateTime.Now;
+
+                        db.Entry(record).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                         db.SaveChanges();
-                    }
-                    
+					}
 
-                    output.Success = 1;
+
+					output.Success = 1;
 					
 				}
 			}
@@ -316,12 +323,25 @@ namespace WebServiceRestaurante.Controllers
 
 					Worker employee = db.Workers.Find(Cc);
 
-					employee.Estado = Status;
+					EmploymentDetail detail = db.EmploymentDetails.Where(d => d.Cedula == Cc).FirstOrDefault();
 
-					db.Entry(employee).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-					db.SaveChanges();
-					output.Success = 1;
+					if(employee != null)
+					{
+						db.Database.ExecuteSqlRaw("EXEC addEmploymentLog @empleado_modificado, @fin_contrato, @inicio_jornada, @nit_restaurante, @estado, @fecha_creacion",
+							new SqlParameter("@empleado_modificado", Cc),
+							new SqlParameter("@fin_contrato", detail.FinContrato),
+							new SqlParameter("@inicio_jornada", detail.InicioJornada),
+							new SqlParameter("@nit_restaurante", detail.NitRestaurante),
+							new SqlParameter("@estado", employee.Estado),
+							new SqlParameter("@fecha_creacion", DateTime.Now));
 
+						employee.Estado = Status;
+
+						db.Entry(employee).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+						db.SaveChanges();
+						output.Success = 1;
+					}
+					
 				}
 			}
 			catch (Exception ex)
@@ -356,7 +376,7 @@ namespace WebServiceRestaurante.Controllers
 						}
 					}
 
-					var detail = db.RecruitmentDetails.Where(d=>d.Cedula == Cc).ToList();
+					var detail = db.EmploymentDetails.Where(d=>d.Cedula == Cc).ToList();
                     db.RemoveRange(detail);
                     db.SaveChanges();
 

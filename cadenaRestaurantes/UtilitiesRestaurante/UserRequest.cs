@@ -8,10 +8,14 @@ namespace UtilitiesRestaurante
 {
 	public class UserRequest
 	{
-		public string Id { get; set; }
-		public string Correo { get; set; }
+
+		public string Cedula { get; set; }
 
 		public string Nombre { get; set; }
+
+		public string Telefono { get; set; }
+		public string Correo { get; set; }
+
 		public string Cargo { get; set; }
 
 		public string? Nit { get; set; }

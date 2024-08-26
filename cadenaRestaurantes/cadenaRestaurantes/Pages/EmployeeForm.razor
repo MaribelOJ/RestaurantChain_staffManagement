@@ -1,5 +1,5 @@
 ﻿@page "/Employees/Form"
-@page "/Employees/Form/{Cc:int}"
+@page "/Employees/Form/{Cc}"
 
 @using System.Security.Claims
 @using UtilitiesRestaurante
@@ -16,11 +16,11 @@
 @inject AuthenticationStateProvider autenticacionProvider
 @inject NavigationManager NavigationManager
 
-<h3 class="text-center">@titulo</h3>
-<div class="row justify-content-center">
+@* <h3 class="text-center">@titulo</h3> *@
+@* <div class="row justify-content-center">
 	<div class="col-6">
 		<EditForm Model="@worker">
-			<DataAnnotationsValidator></DataAnnotationsValidator>
+			<DataAnnotationsValidator /> 
 			<div class="form-group row mb-3">
 				<label class="col-sm-3">
 					Cedula
@@ -64,7 +64,7 @@
 					<ValidationMessage For="@(() => worker.Correo)"></ValidationMessage>
 				</div>
 			</div>
-			 <div class="form-group row mb-3">
+			<div class="form-group row mb-3">
 				<label class="col-sm-3">
 					Cargo
 				</label>
@@ -108,7 +108,7 @@
 				<AuthorizeView Roles="Administrador">
 					<Authorized Context="nitContext">	
 						<div>
-							<InputNumber class="form-control" @bind-Value="@worker.NitRestaurante" readonly />
+							<InputNumber class="form-control" @bind-Value="@worker.NitRestaurante"/>
 							<ValidationMessage For="@(() => worker.NitRestaurante)"></ValidationMessage>
 						</div>
 					
@@ -133,16 +133,137 @@
 					</a>
 				</div>
 			</div>
-			
+		</EditForm>
+	</div>
+</div>  *@
+
+<div class="container">
+    <div class="form-section my-5" id="datos_institucionales">
+        <div class="d-flex align-items-center justify-content-center mb-3">
+			<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-vcard-fill title-icon me-2" viewBox="0 0 16 16">
+				<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0" />
+			</svg>
+            <h2>@titulo</h2>
+        </div>
+        <div class="title-line"></div>
+		<EditForm Model="@worker" class=" row justify-content-center">
+			<DataAnnotationsValidator />
+            
+            <div class="row my-md-5 mt-5">
+				<div class="col form-group col-md-6 col-12 mb-3 mb-md-0">
+					<label for="inputCedula" class="fw-bold">
+						Cedula:
+					</label>
+					@if (Cc != null)
+					{
+						<InputText class="form-control" @bind-Value="@worker.Cedula" readonly />
+					}
+					else
+					{
+
+						<InputText class="form-control" @bind-Value="@worker.Cedula" />
+					}
+					<ValidationMessage For="@(() => worker.Cedula)"></ValidationMessage>
+				</div>
+				<div class="col form-group col-md-6 col-12 mb-3 mb-md-0">
+					<label for="inputName"  class="fw-bold">
+						Nombre Completo:
+					</label>
+					<InputText class="form-control" @bind-Value="@worker.Nombre" />
+					<ValidationMessage For="@(() => worker.Nombre)"></ValidationMessage>
+
+				</div>
+            </div>
+			<div class="row mb-md-5">
+				<div class="col form-group col-md-6 col-12 mb-3 mb-md-0">
+					<label class="fw-bold">
+						Telefono:
+					</label>
+					<InputText class="form-control" @bind-Value="@worker.Telefono" />
+					<ValidationMessage For="@(() => worker.Telefono)"></ValidationMessage>
+
+				</div>
+				<div class="col form-group col-md-6 col-12 mb-3 mb-md-0">
+					<label class="fw-bold">
+						Correo:
+					</label>
+					<InputText class="form-control" @bind-Value="@worker.Correo" />
+					<ValidationMessage For="@(() => worker.Correo)"></ValidationMessage>
+				</div>
+			</div>
+			<div class="row mb-md-5 ">
+				<div class="col form-group col-md-6 col-12 mb-3 mb-md-0">
+					<label class="fw-bold">
+						Cargo:
+					</label>
+					<AuthorizeView Roles="Administrador">
+						<Authorized Context="authContext">
+							
+							<InputText class="form-control" @bind-Value="@worker.Cargo" />
+							<ValidationMessage For="@(() => worker.Cargo)"></ValidationMessage>
+							
+						</Authorized>
+						<NotAuthorized Context="notAuthContext">
+							
+							<InputText class="form-control" @bind-Value="@worker.Cargo" readonly />
+							<ValidationMessage For="@(() => worker.Cargo)"></ValidationMessage>
+							
+						</NotAuthorized>
+					</AuthorizeView>
+				</div>
+				<div class="col form-group col-md-6 col-12 mb-3 mb-md-0">
+					<label class="fw-bold">
+						Fin Contrato:
+					</label>
+
+					<InputDate class="form-control" @bind-Value="@worker.FinContrato"></InputDate>
+					<ValidationMessage For="@(() => worker.FinContrato)"></ValidationMessage>
+
+				</div>
+			</div>
+			<div class="row mb-5">
+				<div class="col form-group col-md-6 col-12 mb-3 mb-md-0">
+					<label class="fw-bold">
+						Inicio Jornada
+					</label>
+
+					<input type="text" @bind="parsedTime" class="form-control" id="timeInput" />
+					<ValidationMessage For="@(() => worker.InicioJornada)"></ValidationMessage>
+
+				</div>
+				<div class="col form-group col-md-6 col-12 mb-3 mb-md-0">
+					<label class="fw-bold">
+						Nit Restaurante
+					</label>
+
+					<InputNumber class="form-control" @bind-Value="@worker.NitRestaurante" />
+					<ValidationMessage For="@(() => worker.NitRestaurante)"></ValidationMessage>
+
+				</div>
+			</div>
+			<div class="row justify-content-center ">
+				<div class="col-md-5 col-12">
+					<button class="btn w-100 fw-bold mb-3 mb-md-0" @onclick="Save">
+						@btnAction
+					</button>
+				</div>
+				<div class="col-md-5 col-12">
+					<a href="/Employees">
+						<button class="btn w-100 fw-bold">
+							Volver
+						</button>
+					</a>
+				</div>
+			</div>
 		</EditForm>
 	</div>
 </div>
 
 @code {
 	[Parameter]
-	public int Cc  { get; set; }
+	public string Cc { get; set; }
 
-	string titulo = "Registrar Empleado";
+	string titulo = "Ingresar Empleado";
 	string btnAction = "Enviar";
 	string cargo = string.Empty;
 	long nit = 0;
@@ -167,7 +288,7 @@
 
 		if (cargo == "Superadmin")
 		{
-			titulo = "Registrar Administrador";
+			titulo = "Ingresar Administrador";
 			worker.Cargo = "Administrador";
 			Console.WriteLine("desde el formulario");
 		}
@@ -177,7 +298,7 @@
 			worker.NitRestaurante = nit;
 		}
 
-		if (Cc != 0)
+		if (Cc != null)
 		{
 			CompleteOutput = await Http.GetFromJsonAsync<RequestResponse<EmployeeRequest>>($"{Url}?Cc={Cc}");
 			worker = CompleteOutput.QueryData;
@@ -185,7 +306,7 @@
 
 			if (cargo == "Superadmin")
 			{
-				titulo = "Registrar Administrador";
+				titulo = "Editar Administrador";
 
 			}
 			else
@@ -205,7 +326,7 @@
 	{
 		var titulo = string.Empty;
 		worker.InicioJornada = parsedTime;
-		if(Cc != 0)
+		if(Cc != null)
 		{
 			var updateRequest = await Http.PutAsJsonAsync<EmployeeRequest>(Url, worker);
 			PlainOutput = updateRequest.Content.ReadFromJsonAsync<RequestResponse<object>>().Result;
@@ -213,6 +334,7 @@
 		}
 		else
 		{
+			Console.WriteLine("enviar info");
 			worker.Estado = "Activo";
 			var insertRequest = await Http.PostAsJsonAsync<EmployeeRequest>($"{Url}/{cargo}", worker);
 			PlainOutput = insertRequest.Content.ReadFromJsonAsync<RequestResponse<object>>().Result;
@@ -247,3 +369,59 @@
 
 	}
 }
+
+<style>
+    .btn{
+        border-radius: 4px;
+        height: 44px;
+        font-size: 14px;
+        /* font-weight: 600; */
+        transition: all 200ms linear;
+        border: none;
+        background-color: #102770;
+        color: #ffeba7;
+        box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
+    }
+
+        .btn:active,
+        .btn:focus {
+            background-color: #ffeba7;
+            color: #102770;
+            box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
+        }
+
+        .btn:hover {
+            background-color: #ffeba7;
+            color: #102770;
+            box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
+		}
+
+	.title-line {
+		border-top: 2px solid #102770;
+		margin-top: -10px;
+	}
+
+	.form-section {
+		background-color: #f8f9fa;
+		border: 1px solid #ced4da;
+		padding: 20px;
+		border-radius: 5px;
+		max-width: 800px;
+		margin: auto;
+	}
+
+		.form-section h2 {
+			color: #102770;
+			text-align: center;
+		}
+
+		.form-section .title-icon {
+			color: #102770;
+			margin-right: 10px;
+			font-size: 1.5rem;
+			margin-bottom: 10px;
+		}
+        
+
+
+</style>

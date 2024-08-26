@@ -9,13 +9,21 @@
 
 .navbar-brand {
     font-size: 1.1rem;
+    font-style:normal;
 }
 
-.oi {
+.bi {
     width: 2rem;
     font-size: 1.1rem;
     vertical-align: text-top;
     top: -2px;
+    
+}
+
+.half {
+    color: #ffeba7;
+   /* font-size: 18px;*/
+    font-style: italic;
 }
 
 .nav-item {
