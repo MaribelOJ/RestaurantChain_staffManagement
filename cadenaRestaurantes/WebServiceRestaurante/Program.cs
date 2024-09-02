@@ -2,6 +2,8 @@ using static System.Net.Mime.MediaTypeNames;
 using System.Text.Json.Serialization;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using WebServiceRestaurante.Models;
 
 
 namespace WebServiceRestaurante
@@ -37,6 +39,11 @@ namespace WebServiceRestaurante
 					Format = "time",
 					Example = new OpenApiString(DateTime.Now.TimeOfDay.ToString(@"hh\:mm\:ss"))
 				});
+			});
+
+			builder.Services.AddDbContext<CadenaRestaurantesContext>(opciones =>
+			{
+				opciones.UseSqlServer(builder.Configuration.GetConnectionString("cadenaSQL"));
 			});
 
 			var app = builder.Build();

@@ -16,127 +16,6 @@
 @inject AuthenticationStateProvider autenticacionProvider
 @inject NavigationManager NavigationManager
 
-@* <h3 class="text-center">@titulo</h3> *@
-@* <div class="row justify-content-center">
-	<div class="col-6">
-		<EditForm Model="@worker">
-			<DataAnnotationsValidator /> 
-			<div class="form-group row mb-3">
-				<label class="col-sm-3">
-					Cedula
-				</label>
-				<div>
-					@if(Cc != 0)
-					{
-						<InputText class="form-control" @bind-Value="@worker.Cedula" readonly />
-					}else{
-
-						<InputText class="form-control" @bind-Value="@worker.Cedula"/>
-					}
-					<ValidationMessage For="@(() => worker.Cedula)"></ValidationMessage>
-
-				</div>
-			</div>
-			<div class="form-group row mb-3">
-				<label class="col-sm-3">
-					Nombre Completo
-				</label>
-				<div>
-					<InputText class="form-control" @bind-Value="@worker.Nombre" />
-					<ValidationMessage For="@(() => worker.Nombre)"></ValidationMessage>
-				</div>
-			</div>
-			<div class="form-group row mb-3">
-				<label class="col-sm-3">
-					Telefono
-				</label>
-				<div>
-					<InputText class="form-control" @bind-Value="@worker.Telefono" />
-					<ValidationMessage For="@(() => worker.Telefono)"></ValidationMessage>
-				</div>
-			</div>
-			<div class="form-group row mb-3">
-				<label class="col-sm-3">
-					Correo
-				</label>
-				<div>
-					<InputText class="form-control" @bind-Value="@worker.Correo" />
-					<ValidationMessage For="@(() => worker.Correo)"></ValidationMessage>
-				</div>
-			</div>
-			<div class="form-group row mb-3">
-				<label class="col-sm-3">
-					Cargo
-				</label>
-				<AuthorizeView Roles="Administrador">
-					<Authorized Context="authContext">	
-						<div>
-							<InputText class="form-control" @bind-Value="@worker.Cargo" />
-							<ValidationMessage For="@(() => worker.Cargo)"></ValidationMessage>
-						</div>
-					</Authorized>
-					<NotAuthorized Context="notAuthContext">
-						<div>
-							<InputText class="form-control" @bind-Value="@worker.Cargo" readonly />
-							<ValidationMessage For="@(() => worker.Cargo)"></ValidationMessage>
-						</div>
-					</NotAuthorized>
-				</AuthorizeView>
-			</div>
-			<div class="form-group row mb-3">
-				<label class="col-sm-3">
-					Fin Contrato
-				</label>
-				<div>
-					<InputDate class="form-control" @bind-Value="@worker.FinContrato"></InputDate>
-					<ValidationMessage For="@(() => worker.FinContrato)"></ValidationMessage>
-				</div>
-			</div>
-			<div class="form-group row mb-3">
-				<label class="col-sm-3">
-					Inicio Jornada
-				</label>
-				<div>
-					<input type="text" @bind="parsedTime" class="form-control" id="timeInput" />
-					<ValidationMessage For="@(() => worker.InicioJornada)"></ValidationMessage>
-				</div>
-			</div>
-			<div class="form-group row mb-3">
-				<label class="col-sm-3">
-					Nit Restaurante
-				</label>
-				<AuthorizeView Roles="Administrador">
-					<Authorized Context="nitContext">	
-						<div>
-							<InputNumber class="form-control" @bind-Value="@worker.NitRestaurante"/>
-							<ValidationMessage For="@(() => worker.NitRestaurante)"></ValidationMessage>
-						</div>
-					
-					</Authorized>
-					<NotAuthorized Context="notAuthContext">
-						<div>
-							<InputNumber class="form-control" @bind-Value="@worker.NitRestaurante"/>
-							<ValidationMessage For="@(() => worker.NitRestaurante)"></ValidationMessage>
-						</div>
-					</NotAuthorized>
-				</AuthorizeView>
-			</div>
-			<div class="form-group row mb-3">
-				<div class="col-sm-12">
-					<button class="btn btn-primary" @onclick="Save">
-						@btnAction
-					</button>
-					<a href="/Employees">
-						<button class="btn btn-warning">
-							Volver
-						</button>
-					</a>
-				</div>
-			</div>
-		</EditForm>
-	</div>
-</div>  *@
-
 <div class="container">
     <div class="form-section my-5" id="datos_institucionales">
         <div class="d-flex align-items-center justify-content-center mb-3">
@@ -247,7 +126,7 @@
 						@btnAction
 					</button>
 				</div>
-				<div class="col-md-5 col-12">
+				<div class="col-md-5 col-12" >
 					<a href="/Employees">
 						<button class="btn w-100 fw-bold">
 							Volver
@@ -261,7 +140,7 @@
 
 @code {
 	[Parameter]
-	public string Cc { get; set; }
+	public string? Cc { get; set; }
 
 	string titulo = "Ingresar Empleado";
 	string btnAction = "Enviar";
@@ -269,9 +148,9 @@
 	long nit = 0;
 	private TimeSpan parsedTime;
 	EmployeeRequest worker = new EmployeeRequest();
-	RequestResponse<object> PlainOutput= new RequestResponse<object>();
+	RequestResponse<object>? PlainOutput= new RequestResponse<object>();
 
-	RequestResponse<EmployeeRequest> CompleteOutput = new RequestResponse<EmployeeRequest>();
+	RequestResponse<EmployeeRequest>? CompleteOutput = new RequestResponse<EmployeeRequest>();
 
 
 	public string Url = "/api/Empleados";
@@ -283,7 +162,7 @@
 		var autenticacionExt = (AuthenticationFilter)autenticacionProvider;
 		var user = await autenticacionExt.GetAuthenticationStateAsync();
 		var loggedUser = user.User;
-		cargo = loggedUser.FindFirst(ClaimTypes.Role)?.Value;
+		cargo = loggedUser.FindFirst(ClaimTypes.Role)?.Value ?? "Sin Especificar";
 
 
 		if (cargo == "Superadmin")
@@ -294,16 +173,24 @@
 		}
 		else
 		{
-			nit = long.Parse(loggedUser.FindFirst(ClaimTypes.SerialNumber)?.Value);
-			worker.NitRestaurante = nit;
+			var nitValue = loggedUser.FindFirst(ClaimTypes.SerialNumber)?.Value;
+			bool isNitValid = long.TryParse(nitValue, out nit);
+			if (isNitValid)
+			{
+				worker.NitRestaurante = nit;
+			}	
 		}
 
 		if (Cc != null)
 		{
 			CompleteOutput = await Http.GetFromJsonAsync<RequestResponse<EmployeeRequest>>($"{Url}?Cc={Cc}");
-			worker = CompleteOutput.QueryData;
-			parsedTime = worker.InicioJornada;
 
+			if (CompleteOutput != null && CompleteOutput.Success == 1)
+			{
+				worker = CompleteOutput.QueryData;
+				parsedTime = worker.InicioJornada;
+			}
+			
 			if (cargo == "Superadmin")
 			{
 				titulo = "Editar Administrador";
@@ -326,6 +213,7 @@
 	{
 		var titulo = string.Empty;
 		worker.InicioJornada = parsedTime;
+
 		if(Cc != null)
 		{
 			var updateRequest = await Http.PutAsJsonAsync<EmployeeRequest>(Url, worker);
@@ -341,13 +229,13 @@
 			titulo = "Ingresar Datos";
 		}
 
-		if(PlainOutput.Success == 1)
+		if(PlainOutput != null && PlainOutput.Success == 1)
 		{
 			var resultado = await notification.FireAsync(new SweetAlertOptions
 			{
 
 				Title = titulo,
-				Text = "¡Los datos han sido guardados con Éxito!",
+				Text = "Los datos han sido guardados con Éxito",
 				Icon = SweetAlertIcon.Success
 
 			});
@@ -360,14 +248,15 @@
 			{
 
 				Title = titulo,
-				Text = "¡Los datos no son validos, puede que ya existan el correo, el telefono o la cedula que esta intentando ingresar!",
+				Text = "Los datos ingresados ya existen",
 				Icon = SweetAlertIcon.Error,
 
 			});
-			
+
 		}
 
 	}
+
 }
 
 <style>
@@ -375,7 +264,6 @@
         border-radius: 4px;
         height: 44px;
         font-size: 14px;
-        /* font-weight: 600; */
         transition: all 200ms linear;
         border: none;
         background-color: #102770;

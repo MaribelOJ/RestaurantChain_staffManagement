@@ -34,7 +34,7 @@ namespace UtilitiesRestaurante
 
 		public TimeSpan InicioJornada { get; set; }
 
-		[Range(100000000, int.MaxValue, ErrorMessage = "Nit no Valido")]
+		[Range(100000000, 999999999, ErrorMessage = "Nit no Valido")]
 		public long NitRestaurante { get; set; }
 
 		public string Estado { get; set; }

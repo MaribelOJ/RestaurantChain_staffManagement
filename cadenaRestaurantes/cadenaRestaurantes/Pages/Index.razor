@@ -91,19 +91,21 @@
     public string Url = "/api/Account";
 
     UserRequest user_info = new UserRequest();
-    RequestResponse<object> PlainOutput = new RequestResponse<object>();
+    RequestResponse<object>? PlainOutput = new RequestResponse<object>();
 
     protected override async Task OnInitializedAsync()
     {
         var autenticacionExt = (AuthenticationFilter)autenticacionProvider;
         var user = await autenticacionExt.GetAuthenticationStateAsync();
         var loggedUser = user.User;
-        user_info.Cedula = loggedUser.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        user_info.Nombre= loggedUser.FindFirst(ClaimTypes.Name)?.Value;
-        user_info.Telefono = loggedUser.FindFirst(ClaimTypes.HomePhone)?.Value;
-        user_info.Correo = loggedUser.FindFirst(ClaimTypes.Email)?.Value;
-        user_info.Cargo = loggedUser.FindFirst(ClaimTypes.Role)?.Value;
+
+        user_info.Cedula = loggedUser.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
+        user_info.Nombre = loggedUser.FindFirst(ClaimTypes.Name)?.Value ?? "Desconocido";
+        user_info.Telefono = loggedUser.FindFirst(ClaimTypes.HomePhone)?.Value ?? "No proporcionado";
+        user_info.Correo = loggedUser.FindFirst(ClaimTypes.Email)?.Value ?? "No Registrado";
+        user_info.Cargo = loggedUser.FindFirst(ClaimTypes.Role)?.Value ?? "Sin Cargo";
         user_info.Nit = loggedUser.FindFirst(ClaimTypes.SerialNumber)?.Value;
+        
 
     }
 
@@ -111,31 +113,34 @@
     {
         var updateRequest = await Http.PutAsJsonAsync<UserRequest>(Url, user_info);
         PlainOutput = updateRequest.Content.ReadFromJsonAsync<RequestResponse<object>>().Result;
-        var msj = string.Empty;
-        if (PlainOutput.Success == 1)
+      
+        if (PlainOutput != null && PlainOutput.Success == 1)
         {
-            msj = "¡Los datos han sido actualizados con Éxito!";
+            var resultado = await notification.FireAsync(new SweetAlertOptions
+            {
 
+                Title = "Actualización de Datos Exitoso",
+                Text = "Los datos han sido actualizados Correctamente",
+                Icon = SweetAlertIcon.Success
 
+            });
         }
         else
         {
-            msj = "¡Ningún cambio se llevó a cabo!";
-        }
-
-        var resultado = await notification.FireAsync(new SweetAlertOptions
+            var resultado = await notification.FireAsync(new SweetAlertOptions
             {
 
-                Title = "Actualizar Información",
-                Text = msj,
-                Icon = SweetAlertIcon.Info
+                Title = "Actualización de Datos No Exitoso",
+                Text = "Ningún cambio se pudo llevar a cabo",
+                Icon = SweetAlertIcon.Error
 
-        });
+            });
+        }
 
     }
 
 
-    private async Task ShowModal()
+    private void ShowModal()
     {
           IModalReference modalReference;
 
@@ -161,7 +166,6 @@
         border-radius: 4px;
         height: 44px;
         font-size: 14px;
-        /* font-weight: 600; */
         transition: all 200ms linear;
         border: none;
         background-color: #102770;

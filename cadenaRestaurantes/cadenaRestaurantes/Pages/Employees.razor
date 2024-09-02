@@ -32,17 +32,15 @@
 
 	<div class="row justify-content-center">
 
-		<!-- tabla -->
 		<div class="table-responsive row  d-flex justify-content-center">
 				<table class="display table table-striped table-hover text-dark">
 					<thead class="text-center">
 						<tr>
-							<th colspan="3" style="background: #102770;">
-								<!-- buscador -->
+							<th colspan="@LeftCol" style="background: #102770;">
 
 								<div class="row justify-content-start">
 									<div class="col-8">
-										<input type="text" id="busqueda" class="form-control" placeholder="Buscar..." @bind-value="search_txt" @bind-value:event="oninput" @onkeyup="Search">
+										<input type="text" id="busqueda" class="form-control" placeholder="[cedula, nombre o NIT]" @bind-value="search_txt" @bind-value:event="oninput" @onkeyup="Search">
 									</div>
 									<div class="col-4">
 										<button class="btn w-100 fw-bold" @onclick="Search" style="background: #ffeba7;">Buscar</button>
@@ -50,7 +48,7 @@
 								</div>
 
 							</th>
-							<th colspan="@col" class="d-none d-xl-table-cell" style="background: #102770;"></th>
+							<th colspan="@MidCol" class="d-none d-xl-table-cell" style="background: #102770;"></th>
 							<th style="background: #102770;">
 								<a href="/Employees/Form"><span class="oi oi-plus fs-4" style="color: #ffeba7;"></span></a> 
 								
@@ -66,7 +64,7 @@
 							<th scope="col" class="d-none d-xl-table-cell">Inicio Jornada</th>
 							<AuthorizeView Roles="Superadmin">
 
-								<th scope="col" class="d-none d-xl-table-cell">Equipo</th>
+								<th scope="col" >Equipo</th>
 
 							</AuthorizeView>
 							<th scope="col" class="text-start">Estado</th>
@@ -102,7 +100,7 @@
 
 									@if (Employee.Estado.Equals("Inactivo", StringComparison.OrdinalIgnoreCase))
 									{
-										background = "bg-secondary";
+										background = "bg-secondary"; 
 										isChecked = false;
 										<AuthorizeView Roles="Superadmin">
 
@@ -117,9 +115,9 @@
 										</AuthorizeView>
 										<td>
 										<div class="form-check form-switch">
-												<input class="form-check-input @background" type="checkbox"
+												<input class="form-check-input @background switch" type="checkbox"
 														checked="@isChecked"
-														@onchange="@(e => save(Employee.Cedula, Employee.Nombre, (bool)e.Value))" />
+														@onchange="@(e => save(Employee.Cedula, Employee.Nombre, (bool?)e.Value ?? false))" />
 											</div>
 										</td>
 										<td>
@@ -135,7 +133,7 @@
 									}
 									else
 									{
-										background = "bg-success";
+										background = "bg-success"; 
 										isChecked = true;
 										<AuthorizeView Roles="Superadmin">
 
@@ -152,20 +150,18 @@
 											<div class="form-check form-switch">
 												<input class="form-check-input @background" type="checkbox"
 														checked="@isChecked"
-														@onchange="@(e => save(Employee.Cedula, Employee.Nombre, (bool)e.Value))" />
+														@onchange="@(e => save(Employee.Cedula, Employee.Nombre, (bool?)e.Value ?? false))" />
 											</div>
 										</td>
 										<td>
-											<a href="/Employees/Form/@Employee.Cedula">
-												<button class="btn btn-sm" style="background: #ffeba7;">
+										<a href="/Employees/Form/@Employee.Cedula" class="btn btn-sm" style="background: #ffeba7;">
 													<span class="oi oi-pencil"></span>
-												</button>
-											</a>
+										</a>
 										<button class="btn btn-sm d-xl-none" type="button" onclick="VerMas(@Employee.Cedula, @search_txt)">
-												<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-													<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
-												</svg>
-											</button>
+											<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+												<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+											</svg>
+										</button>
 
 										</td>
 									}
@@ -223,24 +219,24 @@
 @code {
 
 	[Parameter]
-	public string background { get; set; }
-	public string col { get; set; } = "5";
+	public string background { get; set; } = string.Empty;
+	public string MidCol { get; set; } = "5";
+	public string LeftCol { get; set; } = "3";
 	public bool isChecked { get; set; }
-	public string target {get; set; }
 
 	[CascadingParameter]
 	IModalService Modal { get; set; } = default!;
 
 
 	public string Url = "/api/Empleados";
-	string search_txt;
+	string search_txt = string.Empty;
 	string titulo = "Lista de Empleados";
 	string col_name = "Cargo";
 	string cargo = string.Empty;
-	string nit = string.Empty;
+	string? nit = string.Empty;
 
 
-	public RequestResponse<List<EmployeeRequest>> multipleOutputs = new RequestResponse<List<EmployeeRequest>>();
+	public RequestResponse<List<EmployeeRequest>>? multipleOutputs = new RequestResponse<List<EmployeeRequest>>();
 	public RequestResponse<EmployeeRequest> oneOutput = new RequestResponse<EmployeeRequest>();
 
 	protected override async Task OnInitializedAsync()
@@ -248,13 +244,13 @@
 		var autenticacionExt = (AuthenticationFilter)autenticacionProvider;
 		var user = await autenticacionExt.GetAuthenticationStateAsync();
 		var loggedUser = user.User;
-		cargo = loggedUser.FindFirst(ClaimTypes.Role)?.Value;
+		cargo = loggedUser.FindFirst(ClaimTypes.Role)?.Value ?? "No especificado";
 		nit = loggedUser.FindFirst(ClaimTypes.SerialNumber)?.Value;
 
 		if (cargo == "Superadmin"){
 			titulo = "Lista de Administradores";
 			col_name = "NIT";
-			col = "6";
+			LeftCol = "4";
 		}
 
 
@@ -299,7 +295,7 @@
 			isChecked = !isActive ? true : false;
 		}
 
-		NavigationManager.NavigateTo("/Employees", forceLoad: true);
+		 await Search();
 
 	}
 
@@ -347,10 +343,10 @@
 
 	}
 
-	private async Task ShowModal(string name, long? nitValue)
+	private void ShowModal(string name, long? nitValue)
 	{
 		IModalReference modalReference;
-		string Nit = nitValue.ToString();
+		string? Nit = nitValue.ToString();
 
 		modalReference = Modal.Show<ModalSuperAdmin>($"Equipo - {name}", new ModalParameters().Add("Nit", Nit));
 
@@ -360,7 +356,7 @@
 
 <script>
 	if (!window.info_anterior) {
-		window.info_anterior = "";
+	 	window.info_anterior = "";
 	}
 
 	function VerMas(actual,busqueda)
@@ -390,3 +386,9 @@
 		
 	}
 </script>
+
+<style>
+	.switch:active{
+		background: green;
+	}
+</style>

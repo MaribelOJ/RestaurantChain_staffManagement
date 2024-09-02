@@ -58,7 +58,7 @@
 @code {
 
 	[Parameter]
-	public string Nit { get; set; }
+	public string? Nit { get; set; }
 
 	[CascadingParameter]
 	BlazoredModalInstance BlazoredModal { get; set; } = default!;
@@ -67,7 +67,7 @@
 	string name = string.Empty;
 	public string Url = "/api/Empleados";
 
-	public RequestResponse<List<EmployeeRequest>> multipleOutputs = new RequestResponse<List<EmployeeRequest>>();
+	public RequestResponse<List<EmployeeRequest>>? multipleOutputs = new RequestResponse<List<EmployeeRequest>>();
 
 	protected override async Task OnInitializedAsync() =>
 		multipleOutputs = await Http.GetFromJsonAsync<RequestResponse<List<EmployeeRequest>>>($"{Url}/Administrador?input={Nit}");
