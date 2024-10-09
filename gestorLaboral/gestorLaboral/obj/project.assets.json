@@ -1,0 +1,1375 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "Blazored.Modal/7.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "6.0.25",
+          "Microsoft.AspNetCore.Components.Web": "6.0.3",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Microsoft.JSInterop.WebAssembly": "6.0.3"
+        },
+        "compile": {
+          "lib/net6.0/Blazored.Modal.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Blazored.Modal.dll": {}
+        },
+        "build": {
+          "buildTransitive/Blazored.Modal.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Blazored.Modal.props": {}
+        }
+      },
+      "Blazored.SessionStorage/2.4.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "6.0.12"
+        },
+        "compile": {
+          "lib/net6.0/Blazored.SessionStorage.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Blazored.SessionStorage.dll": {}
+        }
+      },
+      "bootstrap/5.3.0": {
+        "type": "package",
+        "contentFiles": {
+          "contentFiles/any/any/wwwroot/css/bootstrap-grid.css": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-grid.css.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-grid.min.css": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-grid.min.css.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-grid.rtl.css": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-grid.rtl.css.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-grid.rtl.min.css": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-grid.rtl.min.css.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-reboot.css": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-reboot.css.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-reboot.min.css": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-reboot.min.css.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-reboot.rtl.css": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-reboot.rtl.css.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-reboot.rtl.min.css": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-reboot.rtl.min.css.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-utilities.css": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-utilities.css.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-utilities.min.css": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-utilities.min.css.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-utilities.rtl.css": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-utilities.rtl.css.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-utilities.rtl.min.css": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap-utilities.rtl.min.css.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap.css": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap.css.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap.min.css": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap.min.css.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap.rtl.css": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap.rtl.css.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap.rtl.min.css": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/css/bootstrap.rtl.min.css.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/js/bootstrap.bundle.js": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/js/bootstrap.bundle.js.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/js/bootstrap.bundle.min.js": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/js/bootstrap.bundle.min.js.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/js/bootstrap.esm.js": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/js/bootstrap.esm.js.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/js/bootstrap.esm.min.js": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/js/bootstrap.esm.min.js.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/js/bootstrap.js": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/js/bootstrap.js.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/js/bootstrap.min.js": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          },
+          "contentFiles/any/any/wwwroot/js/bootstrap.min.js.map": {
+            "buildAction": "Content",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          }
+        }
+      },
+      "CurrieTechnologies.Razor.SweetAlert2/5.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "6.0.25",
+          "Microsoft.AspNetCore.Components.Web": "6.0.25"
+        },
+        "compile": {
+          "lib/net6.0/CurrieTechnologies.Razor.SweetAlert2.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/CurrieTechnologies.Razor.SweetAlert2.dll": {}
+        },
+        "build": {
+          "buildTransitive/CurrieTechnologies.Razor.SweetAlert2.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/CurrieTechnologies.Razor.SweetAlert2.props": {}
+        }
+      },
+      "Microsoft.AspNetCore.Authorization/6.0.32": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Metadata": "6.0.32",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.4",
+          "Microsoft.Extensions.Options": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Authorization.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authorization.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components/6.0.32": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "6.0.32",
+          "Microsoft.AspNetCore.Components.Analyzers": "6.0.32"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Analyzers/6.0.32": {
+        "type": "package",
+        "build": {
+          "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components.Authorization/6.0.32": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "6.0.32",
+          "Microsoft.AspNetCore.Components": "6.0.32"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Authorization.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Authorization.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Forms/6.0.25": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "6.0.25"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Forms.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Forms.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Web/6.0.25": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "6.0.25",
+          "Microsoft.AspNetCore.Components.Forms": "6.0.25",
+          "Microsoft.Extensions.DependencyInjection": "6.0.1",
+          "Microsoft.JSInterop": "6.0.25",
+          "System.IO.Pipelines": "6.0.3"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Web.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Components.Web.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Metadata/6.0.32": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Metadata.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Metadata.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection/6.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.Extensions.DependencyInjection.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.DependencyInjection.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/6.0.4": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/Microsoft.Extensions.Logging.Abstractions.targets": {}
+        }
+      },
+      "Microsoft.Extensions.Options/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Primitives": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/Microsoft.Extensions.Options.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.Extensions.Options.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.Extensions.Primitives/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.Extensions.Primitives.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.Primitives.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "Microsoft.JSInterop/6.0.25": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.JSInterop.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.JSInterop.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.JSInterop.WebAssembly/6.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.JSInterop": "6.0.3"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.JSInterop.WebAssembly.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.JSInterop.WebAssembly.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "System.IO.Pipelines/6.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/System.IO.Pipelines.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/System.IO.Pipelines.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "System.Net.Http.Json/6.0.1": {
+        "type": "package",
+        "dependencies": {
+          "System.Text.Json": "6.0.7"
+        },
+        "compile": {
+          "lib/net6.0/System.Net.Http.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/System.Net.Http.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "System.Text.Encodings.Web/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/System.Text.Encodings.Web.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/System.Text.Encodings.Web.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll": {
+            "assetType": "runtime",
+            "rid": "browser"
+          }
+        }
+      },
+      "System.Text.Json/6.0.7": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0",
+          "System.Text.Encodings.Web": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/System.Text.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/System.Text.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/System.Text.Json.targets": {}
+        }
+      },
+      "UtilitiesRestaurante/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/UtilitiesRestaurante.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UtilitiesRestaurante.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Blazored.Modal/7.2.0": {
+      "sha512": "2OtG46zNEk1BRQGzL22wUPTc3JS2meN2BmSns7eLUPORTSK7Bs37NnpZsRHlDs8zJ40NBVn7dG/okwTH+5C7iw==",
+      "type": "package",
+      "path": "blazored.modal/7.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "blazored.modal.7.2.0.nupkg.sha512",
+        "blazored.modal.nuspec",
+        "build/Blazored.Modal.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/Blazored.Modal.props",
+        "buildTransitive/Blazored.Modal.props",
+        "icon.png",
+        "lib/net6.0/Blazored.Modal.dll",
+        "staticwebassets/Blazored.Modal.bundle.scp.css",
+        "staticwebassets/BlazoredModal.razor.js"
+      ]
+    },
+    "Blazored.SessionStorage/2.4.0": {
+      "sha512": "e3XXH+zGGxDq1zC7YzLDD8mfvtoC6ESwTWOGD25H+FbPJlB7yQeL72hDY76tqkcrh98fh+y12r4BNhyQVV9YKw==",
+      "type": "package",
+      "path": "blazored.sessionstorage/2.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "blazored.sessionstorage.2.4.0.nupkg.sha512",
+        "blazored.sessionstorage.nuspec",
+        "icon.png",
+        "lib/net6.0/Blazored.SessionStorage.dll",
+        "lib/net7.0/Blazored.SessionStorage.dll"
+      ]
+    },
+    "bootstrap/5.3.0": {
+      "sha512": "Glct0CeNsN5ETcAmV4IsIGa8VEvnWphT4Wb+IaF7/4KAMaZjxpr0eZ8Uf6H/gWKPcUB2p235/3alyhmYBbU6FQ==",
+      "type": "package",
+      "path": "bootstrap/5.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bootstrap.5.3.0.nupkg.sha512",
+        "bootstrap.nuspec",
+        "bootstrap.png",
+        "content/Content/bootstrap-grid.css",
+        "content/Content/bootstrap-grid.css.map",
+        "content/Content/bootstrap-grid.min.css",
+        "content/Content/bootstrap-grid.min.css.map",
+        "content/Content/bootstrap-grid.rtl.css",
+        "content/Content/bootstrap-grid.rtl.css.map",
+        "content/Content/bootstrap-grid.rtl.min.css",
+        "content/Content/bootstrap-grid.rtl.min.css.map",
+        "content/Content/bootstrap-reboot.css",
+        "content/Content/bootstrap-reboot.css.map",
+        "content/Content/bootstrap-reboot.min.css",
+        "content/Content/bootstrap-reboot.min.css.map",
+        "content/Content/bootstrap-reboot.rtl.css",
+        "content/Content/bootstrap-reboot.rtl.css.map",
+        "content/Content/bootstrap-reboot.rtl.min.css",
+        "content/Content/bootstrap-reboot.rtl.min.css.map",
+        "content/Content/bootstrap-utilities.css",
+        "content/Content/bootstrap-utilities.css.map",
+        "content/Content/bootstrap-utilities.min.css",
+        "content/Content/bootstrap-utilities.min.css.map",
+        "content/Content/bootstrap-utilities.rtl.css",
+        "content/Content/bootstrap-utilities.rtl.css.map",
+        "content/Content/bootstrap-utilities.rtl.min.css",
+        "content/Content/bootstrap-utilities.rtl.min.css.map",
+        "content/Content/bootstrap.css",
+        "content/Content/bootstrap.css.map",
+        "content/Content/bootstrap.min.css",
+        "content/Content/bootstrap.min.css.map",
+        "content/Content/bootstrap.rtl.css",
+        "content/Content/bootstrap.rtl.css.map",
+        "content/Content/bootstrap.rtl.min.css",
+        "content/Content/bootstrap.rtl.min.css.map",
+        "content/Scripts/bootstrap.bundle.js",
+        "content/Scripts/bootstrap.bundle.js.map",
+        "content/Scripts/bootstrap.bundle.min.js",
+        "content/Scripts/bootstrap.bundle.min.js.map",
+        "content/Scripts/bootstrap.esm.js",
+        "content/Scripts/bootstrap.esm.js.map",
+        "content/Scripts/bootstrap.esm.min.js",
+        "content/Scripts/bootstrap.esm.min.js.map",
+        "content/Scripts/bootstrap.js",
+        "content/Scripts/bootstrap.js.map",
+        "content/Scripts/bootstrap.min.js",
+        "content/Scripts/bootstrap.min.js.map",
+        "contentFiles/any/any/wwwroot/css/bootstrap-grid.css",
+        "contentFiles/any/any/wwwroot/css/bootstrap-grid.css.map",
+        "contentFiles/any/any/wwwroot/css/bootstrap-grid.min.css",
+        "contentFiles/any/any/wwwroot/css/bootstrap-grid.min.css.map",
+        "contentFiles/any/any/wwwroot/css/bootstrap-grid.rtl.css",
+        "contentFiles/any/any/wwwroot/css/bootstrap-grid.rtl.css.map",
+        "contentFiles/any/any/wwwroot/css/bootstrap-grid.rtl.min.css",
+        "contentFiles/any/any/wwwroot/css/bootstrap-grid.rtl.min.css.map",
+        "contentFiles/any/any/wwwroot/css/bootstrap-reboot.css",
+        "contentFiles/any/any/wwwroot/css/bootstrap-reboot.css.map",
+        "contentFiles/any/any/wwwroot/css/bootstrap-reboot.min.css",
+        "contentFiles/any/any/wwwroot/css/bootstrap-reboot.min.css.map",
+        "contentFiles/any/any/wwwroot/css/bootstrap-reboot.rtl.css",
+        "contentFiles/any/any/wwwroot/css/bootstrap-reboot.rtl.css.map",
+        "contentFiles/any/any/wwwroot/css/bootstrap-reboot.rtl.min.css",
+        "contentFiles/any/any/wwwroot/css/bootstrap-reboot.rtl.min.css.map",
+        "contentFiles/any/any/wwwroot/css/bootstrap-utilities.css",
+        "contentFiles/any/any/wwwroot/css/bootstrap-utilities.css.map",
+        "contentFiles/any/any/wwwroot/css/bootstrap-utilities.min.css",
+        "contentFiles/any/any/wwwroot/css/bootstrap-utilities.min.css.map",
+        "contentFiles/any/any/wwwroot/css/bootstrap-utilities.rtl.css",
+        "contentFiles/any/any/wwwroot/css/bootstrap-utilities.rtl.css.map",
+        "contentFiles/any/any/wwwroot/css/bootstrap-utilities.rtl.min.css",
+        "contentFiles/any/any/wwwroot/css/bootstrap-utilities.rtl.min.css.map",
+        "contentFiles/any/any/wwwroot/css/bootstrap.css",
+        "contentFiles/any/any/wwwroot/css/bootstrap.css.map",
+        "contentFiles/any/any/wwwroot/css/bootstrap.min.css",
+        "contentFiles/any/any/wwwroot/css/bootstrap.min.css.map",
+        "contentFiles/any/any/wwwroot/css/bootstrap.rtl.css",
+        "contentFiles/any/any/wwwroot/css/bootstrap.rtl.css.map",
+        "contentFiles/any/any/wwwroot/css/bootstrap.rtl.min.css",
+        "contentFiles/any/any/wwwroot/css/bootstrap.rtl.min.css.map",
+        "contentFiles/any/any/wwwroot/js/bootstrap.bundle.js",
+        "contentFiles/any/any/wwwroot/js/bootstrap.bundle.js.map",
+        "contentFiles/any/any/wwwroot/js/bootstrap.bundle.min.js",
+        "contentFiles/any/any/wwwroot/js/bootstrap.bundle.min.js.map",
+        "contentFiles/any/any/wwwroot/js/bootstrap.esm.js",
+        "contentFiles/any/any/wwwroot/js/bootstrap.esm.js.map",
+        "contentFiles/any/any/wwwroot/js/bootstrap.esm.min.js",
+        "contentFiles/any/any/wwwroot/js/bootstrap.esm.min.js.map",
+        "contentFiles/any/any/wwwroot/js/bootstrap.js",
+        "contentFiles/any/any/wwwroot/js/bootstrap.js.map",
+        "contentFiles/any/any/wwwroot/js/bootstrap.min.js",
+        "contentFiles/any/any/wwwroot/js/bootstrap.min.js.map"
+      ]
+    },
+    "CurrieTechnologies.Razor.SweetAlert2/5.6.0": {
+      "sha512": "AnWBR8DnZW4EN+N0XuNs2YFuZkNMKoq8MXD05g93sP8KR43oe3CrvdLeuq2TAmWZKmw4wZdPxemGo1RAuefcmw==",
+      "type": "package",
+      "path": "currietechnologies.razor.sweetalert2/5.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/CurrieTechnologies.Razor.SweetAlert2.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/CurrieTechnologies.Razor.SweetAlert2.props",
+        "buildTransitive/CurrieTechnologies.Razor.SweetAlert2.props",
+        "currietechnologies.razor.sweetalert2.5.6.0.nupkg.sha512",
+        "currietechnologies.razor.sweetalert2.nuspec",
+        "lib/net6.0/CurrieTechnologies.Razor.SweetAlert2.dll",
+        "lib/net7.0/CurrieTechnologies.Razor.SweetAlert2.dll",
+        "lib/net8.0/CurrieTechnologies.Razor.SweetAlert2.dll",
+        "lib/netstandard2.0/CurrieTechnologies.Razor.SweetAlert2.dll",
+        "logo_v2_128.png",
+        "staticwebassets/bootstrap4Theme.css",
+        "staticwebassets/bootstrap4Theme.js",
+        "staticwebassets/bootstrap4Theme.min.css",
+        "staticwebassets/bootstrap4Theme.min.js",
+        "staticwebassets/borderlessTheme.css",
+        "staticwebassets/borderlessTheme.js",
+        "staticwebassets/borderlessTheme.min.css",
+        "staticwebassets/borderlessTheme.min.js",
+        "staticwebassets/bulmaTheme.css",
+        "staticwebassets/bulmaTheme.js",
+        "staticwebassets/bulmaTheme.min.css",
+        "staticwebassets/bulmaTheme.min.js",
+        "staticwebassets/darkTheme.css",
+        "staticwebassets/darkTheme.js",
+        "staticwebassets/darkTheme.min.css",
+        "staticwebassets/darkTheme.min.js",
+        "staticwebassets/defaultTheme.css",
+        "staticwebassets/defaultTheme.js",
+        "staticwebassets/defaultTheme.min.css",
+        "staticwebassets/defaultTheme.min.js",
+        "staticwebassets/materialUITheme.css",
+        "staticwebassets/materialUITheme.js",
+        "staticwebassets/materialUITheme.min.css",
+        "staticwebassets/materialUITheme.min.js",
+        "staticwebassets/minimalTheme.css",
+        "staticwebassets/minimalTheme.js",
+        "staticwebassets/minimalTheme.min.css",
+        "staticwebassets/minimalTheme.min.js",
+        "staticwebassets/sweetAlert2.js",
+        "staticwebassets/sweetAlert2.min.js",
+        "staticwebassets/wordpressAdminTheme.css",
+        "staticwebassets/wordpressAdminTheme.js",
+        "staticwebassets/wordpressAdminTheme.min.css",
+        "staticwebassets/wordpressAdminTheme.min.js"
+      ]
+    },
+    "Microsoft.AspNetCore.Authorization/6.0.32": {
+      "sha512": "seLjd/ejDPCtdxy5OfbCB4vphmoM27/nqyw9dMo3Zx4sUyrdJkCtr0QloDuBLTcdbodg/L8vgF3vxX2VXiXnqg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authorization/6.0.32",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.AspNetCore.Authorization.dll",
+        "lib/net461/Microsoft.AspNetCore.Authorization.xml",
+        "lib/net6.0/Microsoft.AspNetCore.Authorization.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Authorization.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.xml",
+        "microsoft.aspnetcore.authorization.6.0.32.nupkg.sha512",
+        "microsoft.aspnetcore.authorization.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components/6.0.32": {
+      "sha512": "h3ncfB3g2qAfMdO+fgN6cjn04J6KWCbpbG3ShpAVezNHwbvkMLOC9eWfbo3CQClhhD93bMVHewelrhC3YjKOcA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components/6.0.32",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/net6.0/Microsoft.AspNetCore.Components.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Components.xml",
+        "microsoft.aspnetcore.components.6.0.32.nupkg.sha512",
+        "microsoft.aspnetcore.components.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Analyzers/6.0.32": {
+      "sha512": "uMa3fkFZYbpHT5DVgfdgYaF3rVDjeZeznZR2R2+H4M0Vdi5cy7coy2h8+5wbqDH4hT49jPYpS+7LEwTY87+fdA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.analyzers/6.0.32",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "analyzers/dotnet/cs/Microsoft.AspNetCore.Components.Analyzers.dll",
+        "build/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
+        "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
+        "microsoft.aspnetcore.components.analyzers.6.0.32.nupkg.sha512",
+        "microsoft.aspnetcore.components.analyzers.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Authorization/6.0.32": {
+      "sha512": "9CdNcSlXjaqywOi/akislA7qUYeh4Jx4Ofuh4dHwrEjR2HvjrIPbdn6l04aeWS5ibNsVJKtNuRVTpAVrI3fL0w==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.authorization/6.0.32",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/net6.0/Microsoft.AspNetCore.Components.Authorization.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Components.Authorization.xml",
+        "microsoft.aspnetcore.components.authorization.6.0.32.nupkg.sha512",
+        "microsoft.aspnetcore.components.authorization.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Forms/6.0.25": {
+      "sha512": "YdO7ajZVU4HOieTQ0THKiqLSHXpE4S10o3sUXXxtSK9FSaiok75sdmbKBFXhl+hEYv0O+BFZRNCR1RRzxFuHUg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.forms/6.0.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/net6.0/Microsoft.AspNetCore.Components.Forms.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Components.Forms.xml",
+        "microsoft.aspnetcore.components.forms.6.0.25.nupkg.sha512",
+        "microsoft.aspnetcore.components.forms.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Web/6.0.25": {
+      "sha512": "lhCaEJ+BePwKGp/b5sBgZiy3naAXBT1mbn8oiK97wcy+ugSDWJnZoO4gjtoH2L8WL1zTYIl+6lp212a/qKBemw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.web/6.0.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/net6.0/Microsoft.AspNetCore.Components.Web.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Components.Web.xml",
+        "microsoft.aspnetcore.components.web.6.0.25.nupkg.sha512",
+        "microsoft.aspnetcore.components.web.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Metadata/6.0.32": {
+      "sha512": "ghs3/smivxH7E1+QszZSdJ250KRK2YqQ7IVedL8qk/8qamxxZK/18KzeeKimgduh6BHLojFe/ZuEVmf271mnjA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.metadata/6.0.32",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.AspNetCore.Metadata.dll",
+        "lib/net461/Microsoft.AspNetCore.Metadata.xml",
+        "lib/net6.0/Microsoft.AspNetCore.Metadata.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Metadata.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.xml",
+        "microsoft.aspnetcore.metadata.6.0.32.nupkg.sha512",
+        "microsoft.aspnetcore.metadata.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection/6.0.1": {
+      "sha512": "vWXPg3HJQIpZkENn1KWq8SfbqVujVD7S7vIAyFXXqK5xkf1Vho+vG0bLBCHxU36lD1cLLtmGpfYf0B3MYFi9tQ==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection/6.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.DependencyInjection.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/net461/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/net6.0/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/net6.0/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.xml",
+        "microsoft.extensions.dependencyinjection.6.0.1.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {
+      "sha512": "xlzi2IYREJH3/m6+lUrQlujzX8wDitm4QGnUu6kUXTQAWPuZY8i+ticFJbzfqaetLA6KR/rO6Ew/HuYD+bxifg==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.DependencyInjection.Abstractions.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net461/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Logging.Abstractions/6.0.4": {
+      "sha512": "K14wYgwOfKVELrUh5eBqlC8Wvo9vvhS3ZhIvcswV2uS/ubkTRPSQsN557EZiYUSSoZNxizG+alN4wjtdyLdcyw==",
+      "type": "package",
+      "path": "microsoft.extensions.logging.abstractions/6.0.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "analyzers/dotnet/roslyn3.11/cs/Microsoft.Extensions.Logging.Generators.dll",
+        "analyzers/dotnet/roslyn3.11/cs/cs/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/de/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/es/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/fr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/it/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ja/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ko/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/pl/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/pt-BR/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ru/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/tr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/zh-Hans/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/zh-Hant/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/Microsoft.Extensions.Logging.Generators.dll",
+        "analyzers/dotnet/roslyn4.0/cs/cs/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/de/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/es/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/fr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/it/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ja/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ko/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/pl/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/pt-BR/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ru/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/tr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/zh-Hans/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/zh-Hant/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Logging.Abstractions.targets",
+        "buildTransitive/netcoreapp3.1/Microsoft.Extensions.Logging.Abstractions.targets",
+        "buildTransitive/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.targets",
+        "lib/net461/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/net461/Microsoft.Extensions.Logging.Abstractions.xml",
+        "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/net6.0/Microsoft.Extensions.Logging.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
+        "microsoft.extensions.logging.abstractions.6.0.4.nupkg.sha512",
+        "microsoft.extensions.logging.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Options/6.0.0": {
+      "sha512": "dzXN0+V1AyjOe2xcJ86Qbo233KHuLEY0njf/P2Kw8SfJU+d45HNS2ctJdnEnrWbM9Ye2eFgaC5Mj9otRMU6IsQ==",
+      "type": "package",
+      "path": "microsoft.extensions.options/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Options.dll",
+        "lib/net461/Microsoft.Extensions.Options.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Options.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Options.xml",
+        "lib/netstandard2.1/Microsoft.Extensions.Options.dll",
+        "lib/netstandard2.1/Microsoft.Extensions.Options.xml",
+        "microsoft.extensions.options.6.0.0.nupkg.sha512",
+        "microsoft.extensions.options.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Primitives/6.0.0": {
+      "sha512": "9+PnzmQFfEFNR9J2aDTfJGGupShHjOuGw4VUv+JB044biSHrnmCIMD+mJHmb2H7YryrfBEXDurxQ47gJZdCKNQ==",
+      "type": "package",
+      "path": "microsoft.extensions.primitives/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Primitives.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/Microsoft.Extensions.Primitives.dll",
+        "lib/net461/Microsoft.Extensions.Primitives.xml",
+        "lib/net6.0/Microsoft.Extensions.Primitives.dll",
+        "lib/net6.0/Microsoft.Extensions.Primitives.xml",
+        "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.dll",
+        "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
+        "microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+        "microsoft.extensions.primitives.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.JSInterop/6.0.25": {
+      "sha512": "ZjSExPW/8RPcnk7hpOnNkevMrenQvm5QgjzUm0/IpSqLk5XY7p7qntB2ibL0ZI8xDNm1S1Ph5+AZI2geUxltRA==",
+      "type": "package",
+      "path": "microsoft.jsinterop/6.0.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net6.0/Microsoft.JSInterop.dll",
+        "lib/net6.0/Microsoft.JSInterop.xml",
+        "microsoft.jsinterop.6.0.25.nupkg.sha512",
+        "microsoft.jsinterop.nuspec"
+      ]
+    },
+    "Microsoft.JSInterop.WebAssembly/6.0.3": {
+      "sha512": "4B7RdZ01eKShey9MllKrVjEJZN/Y1Hvku/qTwVKSwt/n+KgFmyYEkEMbSdKDWB7MbvCPZykCQbkKnKfLzML9sg==",
+      "type": "package",
+      "path": "microsoft.jsinterop.webassembly/6.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/net6.0/Microsoft.JSInterop.WebAssembly.dll",
+        "lib/net6.0/Microsoft.JSInterop.WebAssembly.xml",
+        "microsoft.jsinterop.webassembly.6.0.3.nupkg.sha512",
+        "microsoft.jsinterop.webassembly.nuspec"
+      ]
+    },
+    "System.IO.Pipelines/6.0.3": {
+      "sha512": "ryTgF+iFkpGZY1vRQhfCzX0xTdlV3pyaTTqRu2ETbEv+HlV7O6y7hyQURnghNIXvctl5DuZ//Dpks6HdL/Txgw==",
+      "type": "package",
+      "path": "system.io.pipelines/6.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/System.IO.Pipelines.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/System.IO.Pipelines.dll",
+        "lib/net461/System.IO.Pipelines.xml",
+        "lib/net6.0/System.IO.Pipelines.dll",
+        "lib/net6.0/System.IO.Pipelines.xml",
+        "lib/netcoreapp3.1/System.IO.Pipelines.dll",
+        "lib/netcoreapp3.1/System.IO.Pipelines.xml",
+        "lib/netstandard2.0/System.IO.Pipelines.dll",
+        "lib/netstandard2.0/System.IO.Pipelines.xml",
+        "system.io.pipelines.6.0.3.nupkg.sha512",
+        "system.io.pipelines.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "System.Net.Http.Json/6.0.1": {
+      "sha512": "5wwf+HrtBkiEAFJbPknDwOXNp12BbiJ3268RILCl8EydO/ffXVxlRbOJi+R2lrn0cBpc4OrFJc7fW4/pGGU6Gw==",
+      "type": "package",
+      "path": "system.net.http.json/6.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/System.Net.Http.Json.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/System.Net.Http.Json.dll",
+        "lib/net461/System.Net.Http.Json.xml",
+        "lib/net5.0/System.Net.Http.Json.dll",
+        "lib/net5.0/System.Net.Http.Json.xml",
+        "lib/net6.0/System.Net.Http.Json.dll",
+        "lib/net6.0/System.Net.Http.Json.xml",
+        "lib/netstandard2.0/System.Net.Http.Json.dll",
+        "lib/netstandard2.0/System.Net.Http.Json.xml",
+        "system.net.http.json.6.0.1.nupkg.sha512",
+        "system.net.http.json.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+      "sha512": "/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
+      "type": "package",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net6.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "System.Text.Encodings.Web/6.0.0": {
+      "sha512": "Vg8eB5Tawm1IFqj4TVK1czJX89rhFxJo9ELqc/Eiq0eXy13RK00eubyU6TJE6y+GQXjyV5gSfiewDUZjQgSE0w==",
+      "type": "package",
+      "path": "system.text.encodings.web/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/System.Text.Encodings.Web.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/System.Text.Encodings.Web.dll",
+        "lib/net461/System.Text.Encodings.Web.xml",
+        "lib/net6.0/System.Text.Encodings.Web.dll",
+        "lib/net6.0/System.Text.Encodings.Web.xml",
+        "lib/netcoreapp3.1/System.Text.Encodings.Web.dll",
+        "lib/netcoreapp3.1/System.Text.Encodings.Web.xml",
+        "lib/netstandard2.0/System.Text.Encodings.Web.dll",
+        "lib/netstandard2.0/System.Text.Encodings.Web.xml",
+        "runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll",
+        "runtimes/browser/lib/net6.0/System.Text.Encodings.Web.xml",
+        "system.text.encodings.web.6.0.0.nupkg.sha512",
+        "system.text.encodings.web.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "System.Text.Json/6.0.7": {
+      "sha512": "/Tf/9XjprpHolbcDOrxsKVYy/mUG/FS7aGd9YUgBVEiHeQH4kAE0T1sMbde7q6B5xcrNUsJ5iW7D1RvHudQNqA==",
+      "type": "package",
+      "path": "system.text.json/6.0.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "analyzers/dotnet/roslyn3.11/cs/System.Text.Json.SourceGeneration.dll",
+        "analyzers/dotnet/roslyn3.11/cs/cs/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/de/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/es/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/fr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/it/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ja/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ko/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/pl/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/pt-BR/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ru/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/tr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/zh-Hans/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/zh-Hant/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/System.Text.Json.SourceGeneration.dll",
+        "analyzers/dotnet/roslyn4.0/cs/cs/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/de/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/es/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/fr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/it/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ja/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ko/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/pl/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/pt-BR/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ru/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/tr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/zh-Hans/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/zh-Hant/System.Text.Json.SourceGeneration.resources.dll",
+        "buildTransitive/netcoreapp2.0/System.Text.Json.targets",
+        "buildTransitive/netcoreapp3.1/System.Text.Json.targets",
+        "buildTransitive/netstandard2.0/System.Text.Json.targets",
+        "lib/net461/System.Text.Json.dll",
+        "lib/net461/System.Text.Json.xml",
+        "lib/net6.0/System.Text.Json.dll",
+        "lib/net6.0/System.Text.Json.xml",
+        "lib/netcoreapp3.1/System.Text.Json.dll",
+        "lib/netcoreapp3.1/System.Text.Json.xml",
+        "lib/netstandard2.0/System.Text.Json.dll",
+        "lib/netstandard2.0/System.Text.Json.xml",
+        "system.text.json.6.0.7.nupkg.sha512",
+        "system.text.json.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "UtilitiesRestaurante/1.0.0": {
+      "type": "project",
+      "path": "../UtilitiesRestaurante/UtilitiesRestaurante.csproj",
+      "msbuildProject": "../UtilitiesRestaurante/UtilitiesRestaurante.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "Blazored.Modal >= 7.2.0",
+      "Blazored.SessionStorage >= 2.4.0",
+      "CurrieTechnologies.Razor.SweetAlert2 >= 5.6.0",
+      "Microsoft.AspNetCore.Components.Authorization >= 6.0.32",
+      "System.Net.Http.Json >= 6.0.1",
+      "System.Text.Encodings.Web >= 6.0.0",
+      "UtilitiesRestaurante >= 1.0.0",
+      "bootstrap >= 5.3.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Usuario\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Globus Sistemas\\practicaCursos\\gestorLaboral\\gestorLaboral\\gestorLaboral.csproj",
+      "projectName": "gestorLaboral",
+      "projectPath": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Globus Sistemas\\practicaCursos\\gestorLaboral\\gestorLaboral\\gestorLaboral.csproj",
+      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Globus Sistemas\\practicaCursos\\gestorLaboral\\gestorLaboral\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {
+            "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Globus Sistemas\\practicaCursos\\gestorLaboral\\UtilitiesRestaurante\\UtilitiesRestaurante.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Globus Sistemas\\practicaCursos\\gestorLaboral\\UtilitiesRestaurante\\UtilitiesRestaurante.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "dependencies": {
+          "Blazored.Modal": {
+            "target": "Package",
+            "version": "[7.2.0, )"
+          },
+          "Blazored.SessionStorage": {
+            "target": "Package",
+            "version": "[2.4.0, )"
+          },
+          "CurrieTechnologies.Razor.SweetAlert2": {
+            "target": "Package",
+            "version": "[5.6.0, )"
+          },
+          "Microsoft.AspNetCore.Components.Authorization": {
+            "target": "Package",
+            "version": "[6.0.32, )"
+          },
+          "System.Net.Http.Json": {
+            "target": "Package",
+            "version": "[6.0.1, )"
+          },
+          "System.Text.Encodings.Web": {
+            "target": "Package",
+            "version": "[6.0.0, )"
+          },
+          "bootstrap": {
+            "target": "Package",
+            "version": "[5.3.0, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

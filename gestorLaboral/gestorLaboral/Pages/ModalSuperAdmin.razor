@@ -1,0 +1,75 @@
+﻿@page "/Modal/{Nit}"
+
+@using System.Net.Http
+@using System.Net.Http.Json
+@using System.Security.Claims
+@using UtilitiesRestaurante
+@using CurrieTechnologies.Razor.SweetAlert2
+@using gestorLaboral.AccessControllers
+@using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Components.Authorization;
+@attribute [Authorize(Roles = "Superadmin")]
+
+
+@inject SweetAlertService validation;
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+
+<div class="row justify-content-center">
+	<form>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Cedula</th>
+					<th>Nombre Completo</th>
+					<th>Telefono</th>
+					<th>Correo</th>
+					<th>Cargo</th>
+					<th>Fin Contrato</th>
+					<th>Inicio Jornada</th>
+				</tr>
+
+			</thead>
+			<tbody>
+				@if (multipleOutputs != null && multipleOutputs.QueryData != null)
+				{
+					@foreach (var Employee in multipleOutputs.QueryData)
+					{
+						<tr>
+							<td>@Employee.Cedula</td>
+							<td>@Employee.Nombre</td>
+							<td>@Employee.Telefono</td>
+							<td>@Employee.Correo</td>
+							<td>@Employee.Cargo</td>
+							<td>@Employee.FinContrato.ToString("dd/MM/yyyy")</td>
+							<td>@Employee.InicioJornada.ToString(@"hh\:mm\:ss")</td>
+
+						</tr>
+					}
+
+				}
+			</tbody>
+		</table>
+	</form>
+
+</div>
+
+@code {
+
+	[Parameter]
+	public string? Nit { get; set; }
+
+	[CascadingParameter]
+	BlazoredModalInstance BlazoredModal { get; set; } = default!;
+
+
+	string name = string.Empty;
+	public string Url = "/api/Empleados";
+
+	public RequestResponse<List<EmployeeRequest>>? multipleOutputs = new RequestResponse<List<EmployeeRequest>>();
+
+	protected override async Task OnInitializedAsync() =>
+		multipleOutputs = await Http.GetFromJsonAsync<RequestResponse<List<EmployeeRequest>>>($"{Url}/Administrador?input={Nit}");
+
+}

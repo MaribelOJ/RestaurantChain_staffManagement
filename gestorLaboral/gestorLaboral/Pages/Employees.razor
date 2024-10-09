@@ -1,0 +1,393 @@
+﻿@page "/Employees"
+@page "/Administrators"
+
+@using System.Net.Http
+@using System.Net.Http.Json 
+@using System.Security.Claims
+@using UtilitiesRestaurante
+@using CurrieTechnologies.Razor.SweetAlert2
+@using gestorLaboral.AccessControllers
+@using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Components.Authorization;
+@attribute [Authorize]
+
+@inject AuthenticationStateProvider autenticacionProvider
+@inject SweetAlertService validation;
+@inject HttpClient Http 
+@inject NavigationManager NavigationManager
+
+<PageTitle>@titulo</PageTitle>
+
+<div class="container pt-5">
+	
+	<div class="row mb-5 mt-2 section_title justify-content-center">
+		
+		<div class="col-10 text-center">
+		
+			<h1>@titulo</h1>
+			
+		</div>
+
+	</div>
+
+	<div class="row justify-content-center">
+
+		<div class="table-responsive row  d-flex justify-content-center">
+				<table class="display table table-striped table-hover text-dark">
+					<thead class="text-center">
+						<tr>
+							<th colspan="@LeftCol" style="background: #102770;">
+
+								<div class="row justify-content-start">
+									<div class="col-8">
+										<input type="text" id="busqueda" class="form-control" placeholder="[cedula, nombre o NIT]" @bind-value="search_txt" @bind-value:event="oninput" @onkeyup="Search">
+									</div>
+									<div class="col-4">
+										<button class="btn w-100 fw-bold" @onclick="Search" style="background: #ffeba7;">Buscar</button>
+									</div>
+								</div>
+
+							</th>
+							<th colspan="@MidCol" class="d-none d-xl-table-cell" style="background: #102770;"></th>
+							<th style="background: #102770;">
+								<a href="/Employees/Form"><span class="oi oi-plus fs-4" style="color: #ffeba7;"></span></a> 
+								
+							</th>
+						</tr>
+						<tr>
+							<th scope="col">Cedula</th>
+							<th scope="col">Nombre</th>
+							<th scope="col"  class="d-none d-xl-table-cell">Telefono</th>
+							<th scope="col"  class="d-none d-xl-table-cell">Correo</th>
+							<th scope="col" class="d-none d-xl-table-cell">@col_name</th>
+							<th scope="col" class="d-none d-xl-table-cell">Fin Contrato</th>
+							<th scope="col" class="d-none d-xl-table-cell">Inicio Jornada</th>
+							<AuthorizeView Roles="Superadmin">
+
+								<th scope="col" >Equipo</th>
+
+							</AuthorizeView>
+							<th scope="col" class="text-start">Estado</th>
+							<th scope="col"> Acción </th>
+						</tr>
+					</thead>
+					<tbody class="text-center">
+						@if (multipleOutputs != null && multipleOutputs.QueryData != null)
+						{
+							
+							@foreach (var Employee in multipleOutputs.QueryData)
+							{
+								<tr>
+												
+									<td>@Employee.Cedula</td>
+									<td>@Employee.Nombre</td>
+									<td class="d-none d-xl-table-cell">@Employee.Telefono</td>
+									<td class="d-none d-xl-table-cell">@Employee.Correo</td>
+									<td class="d-none d-xl-table-cell">
+										@if (cargo.Equals("Superadmin", StringComparison.OrdinalIgnoreCase))
+										{
+											@Employee.NitRestaurante
+
+										}
+										else
+										{
+											@Employee.Cargo
+										}
+									</td>
+									<td class="d-none d-xl-table-cell">@Employee.FinContrato.ToString("dd/MM/yyyy")</td>
+
+									<td class="d-none d-xl-table-cell">@Employee.InicioJornada.ToString(@"hh\:mm\:ss")</td>
+
+									@if (Employee.Estado.Equals("Inactivo", StringComparison.OrdinalIgnoreCase))
+									{
+										background = "bg-secondary"; 
+										isChecked = false;
+										<AuthorizeView Roles="Superadmin">
+
+											<td>
+
+												<button class="btn btn-sm" disabled>
+													<span class="oi oi-eye fs-4"></span>
+												</button>
+
+											</td>
+
+										</AuthorizeView>
+										<td>
+										<div class="form-check form-switch">
+												<input class="form-check-input @background switch" type="checkbox"
+														checked="@isChecked"
+														@onchange="@(e => save(Employee.Cedula, Employee.Nombre, (bool?)e.Value ?? false))" />
+											</div>
+										</td>
+										<td>
+											<button type="button" class="btn btn-sm" @onclick="(() => Eliminar(Employee.Cedula, Employee.Nombre)) " style="background: black; color: #ffeba7;">
+												<span class="oi oi-trash"></span>
+											</button>
+											<button type="button" class=" btn btn-sm d-xl-none">
+												<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+													<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+												</svg>
+											</button>
+										</td>
+									}
+									else
+									{
+										background = "bg-success"; 
+										isChecked = true;
+										<AuthorizeView Roles="Superadmin">
+
+											<td>
+
+												<button type="button" class="btn btn-sm" @onclick="(() => ShowModal(Employee.Nombre,Employee.NitRestaurante))">
+													<span class="oi oi-eye fs-4"></span>
+												</button>
+
+											</td>
+
+										</AuthorizeView>
+										<td>
+											<div class="form-check form-switch">
+												<input class="form-check-input @background" type="checkbox"
+														checked="@isChecked"
+														@onchange="@(e => save(Employee.Cedula, Employee.Nombre, (bool?)e.Value ?? false))" />
+											</div>
+										</td>
+										<td>
+										<a href="/Employees/Form/@Employee.Cedula" class="btn btn-sm" style="background: #ffeba7;">
+													<span class="oi oi-pencil"></span>
+										</a>
+										<button class="btn btn-sm d-xl-none" type="button" onclick="VerMas(@Employee.Cedula, @search_txt)">
+											<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+												<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+											</svg>
+										</button>
+
+										</td>
+									}
+								</tr>
+								<tr class="d-none" id="@Employee.Cedula">                        
+									<td colspan="4">
+
+										<div class="row mb-5">
+											<div class="col-md-4 col-12">
+												<p class="text-dark"><strong>Teléfono:</strong></p>
+												<p class="text-dark">@Employee.Telefono</p>
+											</div>
+											<div class="col-md-4 col-12">
+												<p class="text-dark"><strong>Correo:</strong></p>
+												<p class="text-dark">@Employee.Correo</p>
+											</div>
+											@if (cargo.Equals("Superadmin", StringComparison.OrdinalIgnoreCase))
+											{
+														
+												<div class="col-md-4 col-12">
+													<p class="text-dark"><strong>Nit:</strong></p>
+													<p class="text-dark">@Employee.NitRestaurante</p>
+												</div>
+
+											}
+											else
+											{
+												<div class="col-md-4 col-12">
+													<p class="text-dark"><strong>Cargo:</strong></p>
+													<p class="text-dark">@Employee.Cargo</p>
+												</div>
+											}													
+										</div>
+										<div class="row ">
+											<div class="col-md-4 col-12">
+												<p class="text-dark"><strong>Fin Contrato:</strong></p>
+												<p class="text-dark">@Employee.FinContrato</p>
+											</div>
+											<div class="col-md-4 col-12">
+												<p class="text-dark"><strong>Inicio Jornada:</strong></p>
+												<p class="text-dark">@Employee.InicioJornada</p>
+											</div>
+										</div>
+									</td>
+								</tr> 
+							}
+						}
+					</tbody>
+				</table>
+		</div>
+
+	</div>
+</div>
+
+@code {
+
+	[Parameter]
+	public string background { get; set; } = string.Empty;
+	public string MidCol { get; set; } = "5";
+	public string LeftCol { get; set; } = "3";
+	public bool isChecked { get; set; }
+
+	[CascadingParameter]
+	IModalService Modal { get; set; } = default!;
+
+
+	public string Url = "/api/Empleados";
+	string search_txt = string.Empty;
+	string titulo = "Lista de Empleados";
+	string col_name = "Cargo";
+	string cargo = string.Empty;
+	string? nit = string.Empty;
+
+
+	public RequestResponse<List<EmployeeRequest>>? multipleOutputs = new RequestResponse<List<EmployeeRequest>>();
+	public RequestResponse<EmployeeRequest> oneOutput = new RequestResponse<EmployeeRequest>();
+
+	protected override async Task OnInitializedAsync()
+	{
+		var autenticacionExt = (AuthenticationFilter)autenticacionProvider;
+		var user = await autenticacionExt.GetAuthenticationStateAsync();
+		var loggedUser = user.User;
+		cargo = loggedUser.FindFirst(ClaimTypes.Role)?.Value ?? "No especificado";
+		nit = loggedUser.FindFirst(ClaimTypes.SerialNumber)?.Value;
+
+		if (cargo == "Superadmin"){
+			titulo = "Lista de Administradores";
+			col_name = "NIT";
+			LeftCol = "4";
+		}
+
+
+		multipleOutputs = await Http.GetFromJsonAsync<RequestResponse<List<EmployeeRequest>>>($"{Url}/{cargo}?input={nit}");
+
+	}
+
+	private async Task save(string cedula,string name, bool isActive)
+	{
+		var accion = string.Empty;
+
+		if (isActive == true)
+		{
+			accion = "Activar";
+
+		}
+		else
+		{
+			accion = "Desactivar";
+
+		}
+
+		var resultado = await validation.FireAsync(new SweetAlertOptions
+		{
+				Title = $"{accion} Empleado",
+			Text = $"¿Esta seguro que desea {accion} al empleado {name}?",
+			Icon = SweetAlertIcon.Question,
+			ShowCancelButton = true
+
+		});
+
+
+		if (resultado.IsConfirmed)
+		{
+			var newStatus = isActive ? "Activo" : "Inactivo";
+			var response = await Http.PutAsJsonAsync($"{Url}/{cedula}?Status={newStatus}", newStatus);
+			var PlainOutput = await response.Content.ReadFromJsonAsync<RequestResponse<object>>();
+
+		}
+		else
+		{
+			isChecked = !isActive ? true : false;
+		}
+
+		await Search();
+
+	}
+
+	private async Task Eliminar(string cedula, string name)
+	{
+
+		var resultado = await validation.FireAsync(new SweetAlertOptions
+		{
+			Title = "Eliminar Empleado",
+			Text = $"El Empleado  {name} ya se encuentra INACTIVO, ¿Esta seguro que desea eliminar este empleado?",
+			Icon = SweetAlertIcon.Question,
+			ShowCancelButton = true
+		});
+
+		if (resultado.IsConfirmed)
+		{
+			var deleteRequest = await Http.DeleteAsync($"{Url}/{cedula}?Rol={cargo}");
+			NavigationManager.NavigateTo("/Employees", forceLoad: true);
+
+		}	
+
+	}
+
+	private async Task Search()
+	{
+
+		if (!string.IsNullOrEmpty(search_txt))
+		{
+			if(cargo == "Administrador")
+			{
+				multipleOutputs = await Http.GetFromJsonAsync<RequestResponse<List<EmployeeRequest>>>($"{Url}/{cargo}?input={search_txt}&Nit={nit}");
+			}
+			else
+			{
+				multipleOutputs = await Http.GetFromJsonAsync<RequestResponse<List<EmployeeRequest>>>($"{Url}/{cargo}?input={search_txt}");
+			}
+
+		}
+		else
+		{
+
+			multipleOutputs = await Http.GetFromJsonAsync<RequestResponse<List<EmployeeRequest>>>($"{Url}/{cargo}?input={nit}");
+		}
+
+	}
+
+	private void ShowModal(string name, long? nitValue)
+	{
+		IModalReference modalReference;
+		string? Nit = nitValue.ToString();
+
+		modalReference = Modal.Show<ModalSuperAdmin>($"Equipo - {name}", new ModalParameters().Add("Nit", Nit));
+
+	}
+
+}
+
+<script>
+	if (!window.info_anterior) {
+	 	window.info_anterior = "";
+	}
+
+	function VerMas(actual,busqueda)
+	{
+		if(busqueda){
+			window.info_anterior = "";
+		}
+
+		let item = document.getElementById(actual);
+		if (window.info_anterior && window.info_anterior != actual) {
+			let elemento = document.getElementById(window.info_anterior);
+			if(elemento.classList == "d-table-row d-xl-none"){
+				document.getElementById(window.info_anterior).classList.remove("d-table-row", "d-xl-none");
+				document.getElementById(window.info_anterior).classList.add("d-none");
+			}	
+		}
+
+		if (item.classList == "d-none") {
+			item.classList.remove("d-none");
+			item.classList.add("d-table-row", "d-xl-none");
+		} else {
+			item.classList.remove("d-table-row", "d-xl-none");
+			item.classList.add("d-none");
+		}
+
+		window.info_anterior = actual;
+		
+	}
+</script>
+
+<style>
+	.switch:active{
+		background: green;
+	}
+</style>

@@ -1,0 +1,197 @@
+[
+  {
+    "ContainingType": "WebServiceRestaurante.Controllers.AccountController",
+    "Method": "Inicio",
+    "RelativePath": "api/Account",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "UtilitiesRestaurante.LoginCredentials",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebServiceRestaurante.Controllers.AccountController",
+    "Method": "EditProfileInfo",
+    "RelativePath": "api/Account",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "UtilitiesRestaurante.UserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebServiceRestaurante.Controllers.AccountController",
+    "Method": "EditPassword",
+    "RelativePath": "api/Account/{Cc}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "UtilitiesRestaurante.PasswordRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "Cc",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebServiceRestaurante.Controllers.EmpleadosController",
+    "Method": "GetOne",
+    "RelativePath": "api/Empleados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Cc",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebServiceRestaurante.Controllers.EmpleadosController",
+    "Method": "Edit",
+    "RelativePath": "api/Empleados",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "UtilitiesRestaurante.EmployeeRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebServiceRestaurante.Controllers.EmpleadosController",
+    "Method": "EditStatus",
+    "RelativePath": "api/Empleados/{Cc}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Cc",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "Status",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebServiceRestaurante.Controllers.EmpleadosController",
+    "Method": "Delete",
+    "RelativePath": "api/Empleados/{Cc}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Cc",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "Rol",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebServiceRestaurante.Controllers.EmpleadosController",
+    "Method": "GetMany",
+    "RelativePath": "api/Empleados/{Rol}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Rol",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "input",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Nit",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebServiceRestaurante.Controllers.EmpleadosController",
+    "Method": "Add",
+    "RelativePath": "api/Empleados/{Rol}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Rol",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "UtilitiesRestaurante.EmployeeRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebServiceRestaurante.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebServiceRestaurante.WeatherForecast, WebServiceRestaurante, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
+  }
+]
